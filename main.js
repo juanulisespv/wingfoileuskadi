@@ -59,52 +59,149 @@ function initCommon() {
 }
 
 // ==========================================
-// WEATHER / WIND SIMULATOR WIDGET (index.html)
+// WEATHER — OPEN-METEO LIVE API (index.html)
+// Coordenadas: Escuela Wingfoil Euskadi, Ullibarri-Gamboa
+// lat: 42.9062, lon: -2.5449
 // ==========================================
 function initWeather() {
-  const btnRefresh = document.querySelector('.btn-refresh');
+  const btnRefresh = document.getElementById('btn-refresh');
   if (!btnRefresh) return;
 
-  const windVal = document.getElementById('wind-value');
-  const dirVal = document.getElementById('dir-value');
-  const tempVal = document.getElementById('temp-value');
-  const gustVal = document.getElementById('gust-value');
-  const statusBanner = document.getElementById('weather-status-banner');
+  const LAT = 42.9062;
+  const LON = -2.5449;
 
-  const weatherStates = [
-    { wind: '18 kts', dir: 'Norte (N)', temp: '19°C', gusts: '22 kts', status: 'optimal', text: 'Condiciones excelentes. Norte activo en Club Náutico Vitoria y Ullibarri.' },
-    { wind: '15 kts', dir: 'Sur (S)', temp: '21°C', gusts: '19 kts', status: 'optimal', text: 'Viento Sur ideal para Ullibarri-Gamboa o Club Náutico.' },
-    { wind: '22 kts', dir: 'Suroeste (SO)', temp: '17°C', gusts: '27 kts', status: 'optimal', text: 'Suroeste fuerte. Spot ideal: Garaio (Side-shore).' },
-    { wind: '6 kts', dir: 'Variable', temp: '23°C', gusts: '8 kts', status: 'caution', text: 'Viento flojo. No apto para planear, pero perfecto para SUP y remo.' },
-    { wind: '14 kts', dir: 'Sureste (SE)', temp: '20°C', gusts: '16 kts', status: 'optimal', text: 'Buen viento térmico para Ullibarri-Gamboa.' },
-    { wind: '35 kts', dir: 'Sur (S)', temp: '15°C', gusts: '42 kts', status: 'caution', text: 'Viento de tempestad extremo. Consultar con instructores.' }
-  ];
+  // Open-Meteo API — datos actuales + previsión 5 días en nudos
+  const API_URL = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
+    `&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m` +
+    `&daily=wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,temperature_2m_max,temperature_2m_min` +
+    `&wind_speed_unit=kn&timezone=Europe%2FMadrid&forecast_days=5`;
 
-  function updateWeather() {
-    // Add rotation animation to refresh button
-    btnRefresh.style.transform = 'rotate(360deg)';
-    setTimeout(() => {
-      btnRefresh.style.transform = 'none';
-    }, 500);
+  // Converts wind degrees to compass label
+  function degreesToCompass(deg) {
+    const dirs = ['Norte (N)', 'NNE', 'Noreste (NE)', 'ENE', 'Este (E)', 'ESE', 'Sureste (SE)', 'SSE',
+                  'Sur (S)', 'SSO', 'Suroeste (SO)', 'OSO', 'Oeste (O)', 'ONO', 'Noroeste (NO)', 'NNO'];
+    return dirs[Math.round(deg / 22.5) % 16];
+  }
 
-    const randomIndex = Math.floor(Math.random() * weatherStates.length);
-    const state = weatherStates[randomIndex];
+  // Short compass arrow for forecast strip
+  function degreesToArrow(deg) {
+    const arrows = ['↓','↙','←','↖','↑','↗','→','↘'];
+    return arrows[Math.round(deg / 45) % 8];
+  }
 
-    windVal.textContent = state.wind;
-    dirVal.textContent = state.dir;
-    tempVal.textContent = state.temp;
-    gustVal.textContent = state.gusts;
-
-    statusBanner.textContent = state.text;
-    statusBanner.className = 'weather-status'; // Reset class
-    if (state.status === 'optimal') {
-      statusBanner.classList.add('status-optimal');
+  // Evaluates wingfoil conditions by wind speed (knots)
+  function evaluateConditions(windKts, gustKts) {
+    if (windKts < 8) {
+      return { cls: 'status-caution', icon: '🟡', text: 'Viento flojo. No apto para wingfoil. Ideal para SUP y remo.' };
+    } else if (windKts >= 8 && windKts <= 12) {
+      return { cls: 'status-caution', icon: '🟡', text: `Brisa ligera (${Math.round(windKts)} kts). Condiciones iniciales, mejor con alas grandes (4-5m).` };
+    } else if (windKts > 12 && windKts <= 25 && gustKts <= 32) {
+      return { cls: 'status-optimal', icon: '🟢', text: `¡Condiciones óptimas para wingfoil! (${Math.round(windKts)} kts). Todos los niveles pueden navegar.` };
+    } else if (windKts > 25 && windKts <= 32) {
+      return { cls: 'status-caution', icon: '🟠', text: `Viento fuerte (${Math.round(windKts)} kts). Solo para riders avanzados. Consultar con instructor.` };
     } else {
-      statusBanner.classList.add('status-caution');
+      return { cls: 'status-danger', icon: '🔴', text: `Viento extremo (${Math.round(windKts)} kts). Navegación NO recomendada. Peligro.` };
     }
   }
 
-  btnRefresh.addEventListener('click', updateWeather);
+  // Short status label for forecast cards
+  function forecastStatus(windKts) {
+    if (windKts < 8)  return { cls: 'f-bad',     label: 'Flojo' };
+    if (windKts <= 12) return { cls: 'f-ok',      label: 'Iniciación' };
+    if (windKts <= 25) return { cls: 'f-good',    label: '✔ Óptimo' };
+    if (windKts <= 32) return { cls: 'f-strong',  label: 'Fuerte' };
+    return               { cls: 'f-bad',           label: 'Extremo' };
+  }
+
+  // Formats date as short day name
+  function formatDay(dateStr, index) {
+    if (index === 0) return 'Hoy';
+    if (index === 1) return 'Mañana';
+    const date = new Date(dateStr + 'T12:00:00');
+    return date.toLocaleDateString('es-ES', { weekday: 'short' }).replace('.', '');
+  }
+
+  async function fetchWeather() {
+    const loadingEl  = document.getElementById('weather-loading');
+    const dataEl     = document.getElementById('weather-data');
+    const badgeEl    = document.getElementById('weather-live-badge');
+
+    // Show loading skeleton
+    if (loadingEl) loadingEl.style.display = 'block';
+    if (dataEl)    dataEl.style.display    = 'none';
+
+    // Spin the refresh button
+    btnRefresh.classList.add('spinning');
+
+    try {
+      const res  = await fetch(API_URL);
+      if (!res.ok) throw new Error('Network error');
+      const data = await res.json();
+
+      const cur  = data.current;
+      const day  = data.daily;
+
+      // --- Current conditions ---
+      const windKts = cur.wind_speed_10m;
+      const gustKts = cur.wind_gusts_10m;
+      const tempC   = cur.temperature_2m;
+      const dirDeg  = cur.wind_direction_10m;
+
+      document.getElementById('wind-value').textContent = `${Math.round(windKts)} kts`;
+      document.getElementById('dir-value').textContent  = degreesToCompass(dirDeg);
+      document.getElementById('temp-value').textContent = `${Math.round(tempC)}°C`;
+      document.getElementById('gust-value').textContent = `${Math.round(gustKts)} kts`;
+
+      const { cls, icon, text } = evaluateConditions(windKts, gustKts);
+      const banner = document.getElementById('weather-status-banner');
+      banner.textContent = `${icon} ${text}`;
+      banner.className = `weather-status ${cls}`;
+
+      // --- 5-day forecast strip ---
+      const strip = document.getElementById('forecast-strip');
+      if (strip && day) {
+        strip.innerHTML = '';
+        day.time.forEach((dateStr, i) => {
+          const w   = day.wind_speed_10m_max[i];
+          const g   = day.wind_gusts_10m_max[i];
+          const d   = day.wind_direction_10m_dominant[i];
+          const tH  = day.temperature_2m_max[i];
+          const tL  = day.temperature_2m_min[i];
+          const st  = forecastStatus(w);
+          const card = document.createElement('div');
+          card.className = `forecast-card ${st.cls}`;
+          card.innerHTML = `
+            <span class="fc-day">${formatDay(dateStr, i)}</span>
+            <span class="fc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
+            <span class="fc-wind">${Math.round(w)} kts</span>
+            <span class="fc-gust">↑${Math.round(g)}</span>
+            <span class="fc-temp">${Math.round(tH)}° / ${Math.round(tL)}°</span>
+            <span class="fc-status">${st.label}</span>
+          `;
+          strip.appendChild(card);
+        });
+      }
+
+      // --- Show data, update timestamp ---
+      const now = new Date().toLocaleString('es-ES', { hour:'2-digit', minute:'2-digit', day:'2-digit', month:'2-digit' });
+      document.getElementById('weather-updated').textContent = `🕐 Actualizado: ${now} · Fuente: Open-Meteo`;
+      if (badgeEl) { badgeEl.textContent = '📡 EN VIVO'; badgeEl.style.opacity = '1'; }
+
+      if (loadingEl) loadingEl.style.display = 'none';
+      if (dataEl)    dataEl.style.display    = 'block';
+
+    } catch (err) {
+      console.error('Weather fetch error:', err);
+      if (loadingEl) loadingEl.innerHTML = '<p style="color:#ef4444;font-size:0.85rem;">⚠️ No se pudo obtener el tiempo. Comprueba tu conexión.</p>';
+      if (badgeEl)   { badgeEl.textContent = '⚠️ Sin datos'; badgeEl.style.opacity = '0.6'; }
+    } finally {
+      btnRefresh.classList.remove('spinning');
+    }
+  }
+
+  // Fetch on load and on button click
+  fetchWeather();
+  btnRefresh.addEventListener('click', fetchWeather);
 }
 
 // ==========================================
