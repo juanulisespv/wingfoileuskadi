@@ -8,6 +8,7 @@
   <meta name="keywords" content="material wingfoil, f-one strike wing, rocket wing board, manera wetsuit, comprar wingfoil euskadi">
   
   <!-- CSS Stylesheets -->
+  <link rel="icon" type="image/png" href="img/logos/logo_redondo.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,8 +19,7 @@
     <header class="header">
       <div class="container header-container">
         <a href="index.html" class="logo-link">
-          <div class="logo-icon">W</div>
-          <span class="logo-text">Wingfoil<span>Euskadi</span></span>
+          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi Logo" class="logo-img">
         </a>
         
         <!-- Toggle button for mobile -->
@@ -82,115 +82,104 @@
 
           <div class="grid-cards">
             <!-- Product 1: Strike Wing -->
-            <div class="card product-card" data-category="fone">
-              <div class="product-image-wrapper">
-                <span class="product-brand-badge">F-One</span>
-                <!-- SVG Mock Image representing a Wing -->
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 40 C30 20, 70 20, 85 40 C80 60, 20 60, 15 40" fill="var(--accent-teal-light)" stroke="var(--accent-teal)" stroke-width="2"/>
-                  <path d="M50 25 V 50" stroke="var(--accent-teal)" stroke-dasharray="2 2"/>
-                </svg>
+            <div class="card product-card" data-category="fone" style="padding: 0; overflow: hidden;">
+              <div style="position: relative; overflow: hidden; height: 210px;">
+                <span class="product-brand-badge" style="z-index: 2;">F-One</span>
+                <img src="img/chico-ala.png" alt="F-One Strike Wing" class="product-image-real">
               </div>
-              <span class="product-tag">Alas / Wings</span>
-              <h3 class="card-title" style="margin-top: 8px;">Strike V4 Wing</h3>
-              <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">El ala definitiva de wingfoil. Control de flujo aerodinámico, ligereza y empuje estable.</p>
-              <div class="product-meta">
-                <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                <button class="btn btn-secondary btn-view-details" data-item="fone-strike" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="product-tag">Alas / Wings</span>
+                <h3 class="card-title" style="margin-top: 8px;">Strike V4 Wing</h3>
+                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">El ala definitiva de wingfoil. Control de flujo aerodinámico, ligereza y empuje estable.</p>
+                <div class="product-meta" style="margin-top: auto;">
+                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                  <button class="btn btn-secondary btn-view-details" data-item="fone-strike" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                </div>
               </div>
             </div>
 
             <!-- Product 2: Rocket Board -->
-            <div class="card product-card" data-category="fone">
-              <div class="product-image-wrapper">
-                <span class="product-brand-badge">F-One</span>
-                <!-- SVG Mock Image representing a Board -->
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M40 15 C45 10, 55 10, 60 15 V 80 C60 85, 40 85, 40 80 Z" fill="var(--accent-teal-light)" stroke="var(--accent-teal)" stroke-width="2"/>
-                </svg>
+            <div class="card product-card" data-category="fone" style="padding: 0; overflow: hidden;">
+              <div style="position: relative; overflow: hidden; height: 210px;">
+                <span class="product-brand-badge" style="z-index: 2;">F-One</span>
+                <img src="img/chica-rodillas.png" alt="F-One Rocket Board" class="product-image-real">
               </div>
-              <span class="product-tag">Tablas / Boards</span>
-              <h3 class="card-title" style="margin-top: 8px;">Rocket Wing ASC</h3>
-              <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Tabla rígida de gran estabilidad y volumen optimizado para iniciarte con soltura en el pantano.</p>
-              <div class="product-meta">
-                <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                <button class="btn btn-secondary btn-view-details" data-item="fone-rocket" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="product-tag">Tablas / Boards</span>
+                <h3 class="card-title" style="margin-top: 8px;">Rocket Wing ASC</h3>
+                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Tabla rígida de gran estabilidad y volumen optimizado para iniciarte con soltura en el pantano.</p>
+                <div class="product-meta" style="margin-top: auto;">
+                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                  <button class="btn btn-secondary btn-view-details" data-item="fone-rocket" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                </div>
               </div>
             </div>
 
             <!-- Product 3: Phantom Foil -->
-            <div class="card product-card" data-category="fone">
-              <div class="product-image-wrapper">
-                <span class="product-brand-badge">F-One</span>
-                <!-- SVG Mock Image representing a Foil -->
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 15 V 75 M30 75 H 70 M40 30 H 60" stroke="var(--accent-teal)" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M30 75 C30 70, 70 70, 70 75 Z" fill="var(--accent-teal-light)"/>
-                </svg>
+            <div class="card product-card" data-category="fone" style="padding: 0; overflow: hidden;">
+              <div style="position: relative; overflow: hidden; height: 210px;">
+                <span class="product-brand-badge" style="z-index: 2;">F-One</span>
+                <img src="img/chica_304.png" alt="F-One Phantom Carbon Foil" class="product-image-real">
               </div>
-              <span class="product-tag">Foils / Hydrofoils</span>
-              <h3 class="card-title" style="margin-top: 8px;">Phantom Carbon Foil</h3>
-              <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Foil de carbono de alto aspecto. Vuelo fluido, planeo infinito y gran maniobrabilidad.</p>
-              <div class="product-meta">
-                <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                <button class="btn btn-secondary btn-view-details" data-item="fone-phantom" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="product-tag">Foils / Hydrofoils</span>
+                <h3 class="card-title" style="margin-top: 8px;">Phantom Carbon Foil</h3>
+                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Foil de carbono de alto aspecto. Vuelo fluido, planeo infinito y gran maniobrabilidad.</p>
+                <div class="product-meta" style="margin-top: auto;">
+                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                  <button class="btn btn-secondary btn-view-details" data-item="fone-phantom" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                </div>
               </div>
             </div>
 
             <!-- Product 4: Harness -->
-            <div class="card product-card" data-category="manera">
-              <div class="product-image-wrapper">
-                <span class="product-brand-badge">Manera</span>
-                <!-- SVG Mock Image representing a Harness -->
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M25 35 C25 25, 75 25, 75 35 V 65 C75 75, 25 75, 25 65 Z" fill="var(--accent-lime-light)" stroke="var(--accent-lime)" stroke-width="2"/>
-                  <rect x="40" y="45" width="20" height="10" rx="3" fill="var(--text-primary)"/>
-                </svg>
+            <div class="card product-card" data-category="manera" style="padding: 0; overflow: hidden;">
+              <div style="position: relative; overflow: hidden; height: 210px;">
+                <span class="product-brand-badge" style="z-index: 2; background-color: var(--accent-lime-hover); color: white;">Manera</span>
+                <img src="img/chico15.png" alt="Manera Halo Harness" class="product-image-real">
               </div>
-              <span class="product-tag">Arneses / Harness</span>
-              <h3 class="card-title" style="margin-top: 8px;">Halo Harness</h3>
-              <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Arnés ergonómico y ultra-ligero. Distribuye la fuerza del ala evitando dolores lumbares.</p>
-              <div class="product-meta">
-                <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                <button class="btn btn-secondary btn-view-details" data-item="manera-halo" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="product-tag">Arneses / Harness</span>
+                <h3 class="card-title" style="margin-top: 8px;">Halo Harness</h3>
+                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Arnés ergonómico y ultra-ligero. Distribuye la fuerza del ala evitando dolores lumbares.</p>
+                <div class="product-meta" style="margin-top: auto;">
+                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                  <button class="btn btn-secondary btn-view-details" data-item="manera-halo" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                </div>
               </div>
             </div>
 
             <!-- Product 5: Wetsuit -->
-            <div class="card product-card" data-category="manera">
-              <div class="product-image-wrapper">
-                <span class="product-brand-badge">Manera</span>
-                <!-- SVG Mock Image representing a Wetsuit -->
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M35 20 H 65 V 45 H 58 V 85 H 42 V 45 H 35 Z" fill="var(--accent-lime-light)" stroke="var(--accent-lime)" stroke-width="2"/>
-                  <path d="M35 30 L 20 45 M65 30 L 80 45" stroke="var(--accent-lime)" stroke-width="2"/>
-                </svg>
+            <div class="card product-card" data-category="manera" style="padding: 0; overflow: hidden;">
+              <div style="position: relative; overflow: hidden; height: 210px;">
+                <span class="product-brand-badge" style="z-index: 2; background-color: var(--accent-lime-hover); color: white;">Manera</span>
+                <img src="img/chica-tierra.png" alt="Manera Seafarer Wetsuit" class="product-image-real">
               </div>
-              <span class="product-tag">Neoprenos / Wetsuits</span>
-              <h3 class="card-title" style="margin-top: 8px;">Seafarer 4/3mm</h3>
-              <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Traje de neopreno con flexibilidad elástica. Ideal para las aguas del embalse de Ullibarri.</p>
-              <div class="product-meta">
-                <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                <button class="btn btn-secondary btn-view-details" data-item="manera-seafarer" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="product-tag">Neoprenos / Wetsuits</span>
+                <h3 class="card-title" style="margin-top: 8px;">Seafarer 4/3mm</h3>
+                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Traje de neopreno con flexibilidad elástica. Ideal para las aguas del embalse de Ullibarri.</p>
+                <div class="product-meta" style="margin-top: auto;">
+                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                  <button class="btn btn-secondary btn-view-details" data-item="manera-seafarer" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                </div>
               </div>
             </div>
 
             <!-- Product 6: Impact Vest -->
-            <div class="card product-card" data-category="manera">
-              <div class="product-image-wrapper">
-                <span class="product-brand-badge">Manera</span>
-                <!-- SVG Mock Image representing an Impact Vest -->
-                <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M35 25 C35 15, 65 15, 65 25 V 75 H 35 Z" fill="var(--accent-lime-light)" stroke="var(--accent-lime)" stroke-width="2"/>
-                  <line x1="50" y1="30" x2="50" y2="70" stroke="var(--text-primary)" stroke-width="2"/>
-                </svg>
+            <div class="card product-card" data-category="manera" style="padding: 0; overflow: hidden;">
+              <div style="position: relative; overflow: hidden; height: 210px;">
+                <span class="product-brand-badge" style="z-index: 2; background-color: var(--accent-lime-hover); color: white;">Manera</span>
+                <img src="img/chico_navegando.png" alt="Manera Impact Vest Wing" class="product-image-real">
               </div>
-              <span class="product-tag">Protección / Vests</span>
-              <h3 class="card-title" style="margin-top: 8px;">Impact Vest Wing</h3>
-              <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Chaleco de flotabilidad contra impactos. Protección acolchada de torso, vital para foil.</p>
-              <div class="product-meta">
-                <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                <button class="btn btn-secondary btn-view-details" data-item="manera-impact" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="product-tag">Protección / Vests</span>
+                <h3 class="card-title" style="margin-top: 8px;">Impact Vest Wing</h3>
+                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Chaleco de flotabilidad contra impactos. Protección acolchada de torso, vital para foil.</p>
+                <div class="product-meta" style="margin-top: auto;">
+                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                  <button class="btn btn-secondary btn-view-details" data-item="manera-impact" style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                </div>
               </div>
             </div>
           </div>
@@ -220,6 +209,9 @@
         </div>
         <div class="modal-body">
           <div style="margin-bottom: 16px;">
+            <div id="modal-img-wrapper" style="margin-bottom: 16px; border-radius: var(--radius-sm); overflow: hidden; height: 180px; display: none;">
+              <img id="modal-img" src="" alt="Producto" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <span id="modal-brand" style="display: inline-block; background-color: var(--text-primary); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-bottom: 12px;">MARCA</span>
             <h4 id="modal-subtitle" style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 12px;">Subtítulo del producto</h4>
             <p id="modal-desc" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px;">Descripción detallada.</p>
@@ -239,8 +231,7 @@
     <footer class="footer">
       <div class="container">
         <a href="index.html" class="footer-logo">
-          <div class="logo-icon" style="width:32px; height:32px; font-size:0.9rem;">W</div>
-          <span>Wingfoil Euskadi</span>
+          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi" style="height: 44px; width: auto;">
         </a>
         <p style="margin-bottom: 20px;">Aprende Wingfoil en el pantano de Ullibarri, Álava.</p>
         <div class="footer-socials">

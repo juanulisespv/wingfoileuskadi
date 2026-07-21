@@ -8,6 +8,7 @@
   <meta name="keywords" content="cursos wingfoil, aprender wingfoil euskadi, clases wingfoil, ullibarri gamboa, clases particulares de foil">
   
   <!-- CSS Stylesheets -->
+  <link rel="icon" type="image/png" href="img/logos/logo_redondo.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,8 +19,7 @@
     <header class="header">
       <div class="container header-container">
         <a href="index.html" class="logo-link">
-          <div class="logo-icon">W</div>
-          <span class="logo-text">Wingfoil<span>Euskadi</span></span>
+          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi Logo" class="logo-img">
         </a>
         
         <!-- Toggle button for mobile -->
@@ -58,45 +58,60 @@
         <div class="container">
           <div class="grid-3">
             <!-- Card: Iniciación -->
-            <div class="card">
-              <div class="card-icon">1</div>
-              <h3 class="card-title">Iniciación Wing (Tablas SUP)</h3>
-              <p class="card-text">Diseñado para quienes no vienen de deportes de viento o tabla. Ofrece estabilidad máxima para concentrarte en el ala.</p>
-              <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
-                <li style="margin-bottom: 6px;">Nociones básicas de viento y seguridad.</li>
-                <li style="margin-bottom: 6px;">Manejo y control de la Wing en tierra.</li>
-                <li style="margin-bottom: 6px;">Equilibrio y navegación en ceñida en agua.</li>
-                <li style="margin-bottom: 6px;">Técnicas de trasluchada básica (jibe).</li>
-              </ul>
-              <div style="font-weight: 700; color: var(--accent-teal); font-size: 1.1rem; margin-top: auto;">Duración sugerida: 4 horas</div>
+            <div class="card" style="padding: 0; overflow: hidden;">
+              <div class="course-card-image-wrapper">
+                <img src="img/chica-tierra.png" alt="Iniciación Wingfoil control de ala en tierra" class="course-card-image">
+              </div>
+              <div style="padding: 24px;">
+                <div class="card-icon" style="margin-top: -40px; position: relative; z-index: 2; border: 3px solid white;">1</div>
+                <h3 class="card-title">Iniciación Wing (Tablas SUP)</h3>
+                <p class="card-text">Diseñado para quienes no vienen de deportes de viento o tabla. Ofrece estabilidad máxima para concentrarte en el ala.</p>
+                <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                  <li style="margin-bottom: 6px;">Nociones básicas de viento y seguridad.</li>
+                  <li style="margin-bottom: 6px;">Manejo y control de la Wing en tierra.</li>
+                  <li style="margin-bottom: 6px;">Equilibrio y navegación en ceñida en agua.</li>
+                  <li style="margin-bottom: 6px;">Técnicas de trasluchada básica (jibe).</li>
+                </ul>
+                <div style="font-weight: 700; color: var(--accent-teal); font-size: 1.1rem; margin-top: auto;">Duración sugerida: 4 horas</div>
+              </div>
             </div>
 
             <!-- Card: Progresión Foil -->
-            <div class="card">
-              <div class="card-icon" style="background-color: var(--accent-lime-light); color: var(--accent-lime-hover);">2</div>
-              <h3 class="card-title">Progresión Foil Activo</h3>
-              <p class="card-text">Paso directo al Foil. Si muestras soltura en la navegación con tabla estable, es hora de despegar y aprender a volar.</p>
-              <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
-                <li style="margin-bottom: 6px;">Montaje del mástil y centrado de foil.</li>
-                <li style="margin-bottom: 6px;">Técnicas de bombeo para el despegue.</li>
-                <li style="margin-bottom: 6px;">Control de altura del vuelo (trimado).</li>
-                <li style="margin-bottom: 6px;">Vuelo estable de ceñida y de popa.</li>
-              </ul>
-              <div style="font-weight: 700; color: var(--accent-teal); font-size: 1.1rem; margin-top: auto;">Clases personalizadas</div>
+            <div class="card" style="padding: 0; overflow: hidden;">
+              <div class="course-card-image-wrapper">
+                <img src="img/chico_aprendiendo.png" alt="Progresión Foil Activo despegando" class="course-card-image">
+              </div>
+              <div style="padding: 24px;">
+                <div class="card-icon" style="background-color: var(--accent-lime-light); color: var(--accent-lime-hover); margin-top: -40px; position: relative; z-index: 2; border: 3px solid white;">2</div>
+                <h3 class="card-title">Progresión Foil Activo</h3>
+                <p class="card-text">Paso directo al Foil. Si muestras soltura en la navegación con tabla estable, es hora de despegar y aprender a volar.</p>
+                <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                  <li style="margin-bottom: 6px;">Montaje del mástil y centrado de foil.</li>
+                  <li style="margin-bottom: 6px;">Técnicas de bombeo para el despegue.</li>
+                  <li style="margin-bottom: 6px;">Control de altura del vuelo (trimado).</li>
+                  <li style="margin-bottom: 6px;">Vuelo estable de ceñida y de popa.</li>
+                </ul>
+                <div style="font-weight: 700; color: var(--accent-teal); font-size: 1.1rem; margin-top: auto;">Clases personalizadas</div>
+              </div>
             </div>
 
             <!-- Card: Clínic Avanzado -->
-            <div class="card">
-              <div class="card-icon">3</div>
-              <h3 class="card-title">Clínic y Perfeccionamiento</h3>
-              <p class="card-text">Para riders independientes que desean pulir maniobras complejas, giros en el aire o navegar con vientos fuertes del Sur.</p>
-              <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
-                <li style="margin-bottom: 6px;">Trasluchadas (jibes) volando sin tocar agua.</li>
-                <li style="margin-bottom: 6px;">Viradas (tacks) básicas y avanzadas.</li>
-                <li style="margin-bottom: 6px;">Navegación de olas/swell de viento.</li>
-                <li style="margin-bottom: 6px;">Configuración de foil según intensidad.</li>
-              </ul>
-              <div style="font-weight: 700; color: var(--accent-teal); font-size: 1.1rem; margin-top: auto;">Asesoramiento de compra</div>
+            <div class="card" style="padding: 0; overflow: hidden;">
+              <div class="course-card-image-wrapper">
+                <img src="img/chica_306.png" alt="Clínic Avanzado vuelo sostenido sobre foil" class="course-card-image">
+              </div>
+              <div style="padding: 24px;">
+                <div class="card-icon" style="margin-top: -40px; position: relative; z-index: 2; border: 3px solid white;">3</div>
+                <h3 class="card-title">Clínic y Perfeccionamiento</h3>
+                <p class="card-text">Para riders independientes que desean pulir maniobras complejas, giros en el aire o navegar con vientos fuertes del Sur.</p>
+                <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
+                  <li style="margin-bottom: 6px;">Trasluchadas (jibes) volando sin tocar agua.</li>
+                  <li style="margin-bottom: 6px;">Viradas (tacks) básicas y avanzadas.</li>
+                  <li style="margin-bottom: 6px;">Navegación de olas/swell de viento.</li>
+                  <li style="margin-bottom: 6px;">Configuración de foil según intensidad.</li>
+                </ul>
+                <div style="font-weight: 700; color: var(--accent-teal); font-size: 1.1rem; margin-top: auto;">Asesoramiento de compra</div>
+              </div>
             </div>
           </div>
         </div>
@@ -201,8 +216,7 @@
     <footer class="footer">
       <div class="container">
         <a href="index.html" class="footer-logo">
-          <div class="logo-icon" style="width:32px; height:32px; font-size:0.9rem;">W</div>
-          <span>Wingfoil Euskadi</span>
+          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi" style="height: 44px; width: auto;">
         </a>
         <p style="margin-bottom: 20px;">Aprende Wingfoil en el pantano de Ullibarri, Álava.</p>
         <div class="footer-socials">

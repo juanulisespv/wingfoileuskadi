@@ -8,6 +8,7 @@
   <meta name="keywords" content="escuela wingfoil, wing foil, clases wingfoil vitoria, aprender wingfoil euskadi, ullibarri gamboa, garaio">
   
   <!-- CSS Stylesheets -->
+  <link rel="icon" type="image/png" href="img/logos/logo_redondo.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,8 +19,7 @@
     <header class="header">
       <div class="container header-container">
         <a href="index.html" class="logo-link">
-          <div class="logo-icon">W</div>
-          <span class="logo-text">Wingfoil<span>Euskadi</span></span>
+          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi Logo" class="logo-img">
         </a>
         
         <!-- Toggle button for mobile -->
@@ -58,34 +58,18 @@
             </div>
           </div>
           <div class="hero-media">
-            <!-- Modern SVG illustration of wingfoil navigation -->
-            <svg class="hero-svg-illustration" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="foilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#0d9488" />
-                  <stop offset="100%" stop-color="#84cc16" />
-                </linearGradient>
-              </defs>
-              <!-- Sun / Wind Source -->
-              <circle cx="320" cy="90" r="45" fill="#fef08a" opacity="0.4" />
-              <!-- Wind Lines -->
-              <path d="M30 60 H 260" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 8" />
-              <path d="M50 100 H 300" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round" stroke-dasharray="12 6" />
-              <path d="M20 140 H 220" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 10" />
-              <!-- Waves / Water -->
-              <path d="M10 320 C 60 300, 100 340, 150 320 C 200 300, 250 340, 300 320 C 350 300, 390 330, 410 320" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" fill="none" />
-              <path d="M20 350 C 70 340, 110 370, 160 350 C 210 330, 260 370, 310 350 C 360 330, 380 350, 400 340" stroke="#0284c7" stroke-width="3" stroke-linecap="round" fill="none" />
-              <!-- Wing Board Flyer Vector Symbol -->
-              <path d="M120 280 L 260 250 L 270 260 L 130 292 Z" fill="#1e293b" /> <!-- Board -->
-              <path d="M190 265 L 210 330 L 220 330 L 195 264 Z" fill="#475569" /> <!-- Mast -->
-              <path d="M175 330 L 245 325 L 235 335 L 180 332 Z" fill="url(#foilGrad)" /> <!-- Foil Wings -->
-              <!-- Wing / Sail -->
-              <path d="M130 140 C 150 110, 230 120, 220 190 C 215 220, 160 230, 130 140" fill="url(#foilGrad)" opacity="0.9" />
-              <path d="M140 150 C 155 125, 210 135, 205 185 C 200 210, 165 215, 140 150" fill="white" opacity="0.3" />
-              <!-- Rider Shadow -->
-              <circle cx="180" cy="220" r="12" fill="#0f172a" />
-              <path d="M180 228 L 190 265 L 175 265 Z" fill="#0f172a" />
-            </svg>
+            <div class="hero-image-container">
+              <img src="img/chico-navegando-1.png" alt="Rider volando en Wingfoil en Ullibarri-Gamboa" class="hero-image">
+              <div class="hero-image-overlay-badge">
+                <div>
+                  <div style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; color:var(--accent-lime); font-weight:700;">Ullibarri-Gamboa</div>
+                  <div style="font-weight:700; font-size:0.95rem;">Condiciones Óptimas de Vuelo</div>
+                </div>
+                <div style="text-align:right;">
+                  <span style="font-weight:800; font-size:1.1rem; color:white;">14-22 kt</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -93,13 +77,27 @@
       <!-- Section: Who We Are -->
       <section class="section">
         <div class="container">
-          <div class="grid-2">
+          <div class="grid-2" style="align-items: center;">
             <div>
               <h2 class="section-title">¿Quiénes Somos? <span class="highlight-teal">Escuela Wingfoil</span></h2>
               <p>El <strong>Wingfoil</strong> es un deporte acuático innovador que se ha convertido en una de las actividades de moda en el mundo del deporte náutico. Consiste en manejar un ala (wing) sin estar unida a la tabla, controlándola únicamente con las manos mientras te deslizas sobre el agua gracias a un <strong>Foil</strong> (un ala de avión subacuática) que eleva la tabla y convierte la navegación en un vuelo real.</p>
               <p>En el País Vasco, la escuela <strong>Wingfoil Euskadi</strong> es pionera en la enseñanza de este deporte en la provincia de Álava. Contamos con las mejores condiciones de agua plana y accesos seguros de toda la región, lo que nos sitúa como el lugar ideal tanto para dar tus primeros pasos como para perfeccionar tus planeos.</p>
               <a href="escuela.html" class="btn btn-primary" style="margin-top: 16px;">Saber más sobre clases</a>
             </div>
+            
+            <div style="position: relative;">
+              <img src="img/chica_escuela.png" alt="Instrucción de Wingfoil en la orilla" class="section-side-image">
+              <div style="position: absolute; bottom: -15px; right: -15px; background: var(--bg-primary); padding: 12px 20px; border-radius: var(--radius-md); box-shadow: var(--card-shadow); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 1.5rem;">🏄‍♀️</span>
+                <div>
+                  <strong style="display: block; font-size: 0.9rem; color: var(--text-primary);">Instrucción Directa</strong>
+                  <span style="font-size: 0.8rem; color: var(--text-light);">En agua plana y segura</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
             
             <!-- Real-time dynamic weather widget panel -->
             <div class="weather-widget" id="weather-widget">
@@ -259,14 +257,58 @@
         </div>
       </section>
 
+      <!-- Section: Photo Gallery Showcase -->
+      <section class="section section-bg">
+        <div class="container">
+          <div class="section-header">
+            <span class="badge">Nuestra Comunidad</span>
+            <h2 class="section-title">Galería en Acción en Ullibarri</h2>
+            <p>Echa un vistazo a la experiencia real de nuestros alumnos e instructores disfrutando del Wingfoil en Álava.</p>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-card">
+              <img src="img/chica_301.png" alt="Rider navegando en agua plana">
+              <div class="gallery-caption">
+                <h4>Vuelo Estable</h4>
+                <p>Navegación fluida sobre agua plana</p>
+              </div>
+            </div>
+
+            <div class="gallery-card">
+              <img src="img/chico-ala.png" alt="Control de ala Wingfoil en el pantano">
+              <div class="gallery-caption">
+                <h4>Manejo del Wing</h4>
+                <p>Técnicas de control de ala y viento</p>
+              </div>
+            </div>
+
+            <div class="gallery-card">
+              <img src="img/chica-rodillas.png" alt="Posición de rodillas antes de despegar">
+              <div class="gallery-caption">
+                <h4>Transición al Foil</h4>
+                <p>Equilibrio e inicio de planeo</p>
+              </div>
+            </div>
+
+            <div class="gallery-card">
+              <img src="img/chico15.png" alt="Equipamiento en la orilla del pantano">
+              <div class="gallery-caption">
+                <h4>Equipamiento Profesional</h4>
+                <p>Tablas, alas y neoprenos F-One / Manera</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <!-- Footer Area -->
     <footer class="footer">
       <div class="container">
         <a href="index.html" class="footer-logo">
-          <div class="logo-icon" style="width:32px; height:32px; font-size:0.9rem;">W</div>
-          <span>Wingfoil Euskadi</span>
+          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi" style="height: 44px; width: auto;">
         </a>
         <p style="margin-bottom: 20px;">Aprende Wingfoil en el pantano de Ullibarri, Álava.</p>
         <div class="footer-socials">

@@ -426,42 +426,48 @@ function initCatalog() {
       subtitle: 'El ala definitiva de Wingfoil para velocidad y freeride',
       desc: 'El F-One Strike es el referente en rendimiento. Ofrece una tracción impresionante, estabilidad direccional impecable y una ligereza en los brazos que reduce el cansancio sustancialmente en tus sesiones del pantano.',
       specs: 'Material: Matrix-ST, Tallas: 2.5m a 5.5m, Enfoque: Velocidad y saltos.',
-      brand: 'F-ONE'
+      brand: 'F-ONE',
+      img: 'img/chico-ala.png'
     },
     'fone-rocket': {
       title: 'F-One Rocket Wing ASC',
       subtitle: 'Tabla de alta resistencia y vuelo rápido',
       desc: 'La tabla Rocket Wing ASC es la más recomendada para nuestra escuela. Es extremadamente estable en el agua estática del pantano de Ullibarri, ofreciendo un despegue fácil gracias a su línea de rocker optimizada.',
       specs: 'Volumen: 90L a 120L, Construcción: ASC ligera/rígida, Enfoque: Freeride/Iniciación.',
-      brand: 'F-ONE'
+      brand: 'F-ONE',
+      img: 'img/chica-rodillas.png'
     },
     'fone-phantom': {
       title: 'F-One Phantom Carbon Foil',
       subtitle: 'Hydrofoil de carbono para planeos infinitos',
       desc: 'El Phantom es un foil increíblemente ágil que te permite planear con brisas suaves. Proporciona una velocidad de despegue muy baja, permitiéndote levantar la tabla con vientos flojos de verano en Álava.',
       specs: 'Área: 1480cm², Mástil: Carbono 75cm, Conexión: Placa F-One.',
-      brand: 'F-ONE'
+      brand: 'F-ONE',
+      img: 'img/chica_304.png'
     },
     'manera-halo': {
       title: 'Manera Halo Harness',
       subtitle: 'Arnés ergonómico y ultra-ligero para largas sesiones',
       desc: 'El arnés Halo revoluciona la navegación de wingfoil reduciendo la carga de tracción del ala sobre tus brazos. Su estructura repartida evita puntos de presión incómodos, brindando libertad total en el torso.',
       specs: 'Tallas: S a XL, Material: Compuesto adaptativo, Enganche: Gancho deslizante.',
-      brand: 'MANERA'
+      brand: 'MANERA',
+      img: 'img/chico15.png'
     },
     'manera-seafarer': {
       title: 'Manera Seafarer 4/3mm Wetsuit',
       subtitle: 'Neopreno flexible y de secado rápido',
       desc: 'Diseñado para soportar las aguas frescas del embalse en primavera y otoño. Ofrece un ajuste perfecto y costuras selladas térmicamente para garantizar que la temperatura de tu cuerpo se mantenga óptima.',
       specs: 'Espesor: 4/3 mm, Cremallera: Pecho (Chest zip), Tallas: S a XXL.',
-      brand: 'MANERA'
+      brand: 'MANERA',
+      img: 'img/chica-tierra.png'
     },
     'manera-impact': {
       title: 'Manera Impact Vest',
       subtitle: 'Chaleco de impacto flotante con protección extra',
       desc: 'La seguridad es el pilar de nuestra escuela. Este chaleco proporciona la flotación exigida por ley y protege tu torso ante posibles caídas accidentales contra el foil o la tabla.',
       specs: 'Material: Espuma de célula cerrada NBR, Ajuste: Cremallera lateral.',
-      brand: 'MANERA'
+      brand: 'MANERA',
+      img: 'img/chico_navegando.png'
     }
   };
 
@@ -478,6 +484,14 @@ function initCatalog() {
         document.getElementById('modal-specs').textContent = itemData.specs;
         document.getElementById('modal-brand').textContent = itemData.brand;
         
+        const modalImgWrapper = document.getElementById('modal-img-wrapper');
+        const modalImg = document.getElementById('modal-img');
+        if (modalImgWrapper && modalImg && itemData.img) {
+          modalImg.src = itemData.img;
+          modalImg.alt = itemData.title;
+          modalImgWrapper.style.display = 'block';
+        }
+
         modalOverlay.classList.add('active');
         document.body.style.overflow = 'hidden'; // Lock background scroll
       }
