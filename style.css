@@ -57,7 +57,7 @@ body {
 
 .main-content {
   flex-grow: 1;
-  padding-top: 80px; /* Offset for sticky header */
+  padding-top: 95px; /* Offset for sticky header */
 }
 
 /* Custom Containers */
@@ -161,7 +161,7 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-  height: 80px;
+  height: 95px;
   z-index: 1000;
   background-color: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -191,9 +191,18 @@ p {
 }
 
 .logo-img {
-  height: 48px;
+  height: 68px;
   width: auto;
-  max-width: 200px;
+  max-width: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.08));
+  transition: var(--transition);
+}
+
+.footer-logo-img {
+  height: 65px;
+  width: auto;
+  max-width: 280px;
   object-fit: contain;
   transition: var(--transition);
 }
@@ -1331,7 +1340,7 @@ p {
   }
   .nav {
     position: fixed;
-    top: 80px;
+    top: 95px;
     left: 0;
     width: 100%;
     background-color: var(--bg-primary);
