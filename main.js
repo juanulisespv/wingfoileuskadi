@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initCommon();
-  initWeather();
+  initOnePageScroll();
   initSpotsMap();
   initSpotForecasts();
   initFAQ();
@@ -33,7 +33,6 @@ function initCommon() {
     hamburger.addEventListener('click', () => {
       nav.classList.toggle('active');
       
-      // Transform hamburger to X
       const spans = hamburger.querySelectorAll('span');
       if (nav.classList.contains('active')) {
         spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -46,7 +45,7 @@ function initCommon() {
       }
     });
 
-    // Close menu when clicking links
+    // Close mobile menu when clicking links
     nav.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -58,6 +57,82 @@ function initCommon() {
     });
   }
 }
+
+// ==========================================
+// ONE-PAGE SCROLL SPY, PROGRESS BAR & UI FX
+// ==========================================
+function initOnePageScroll() {
+  const progressBar = document.getElementById('scroll-progress');
+  const backToTopBtn = document.getElementById('back-to-top');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  // 1. Scroll Progress Bar & Back to Top visibility
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (docHeight > 0) ? (scrollTop / docHeight) * 100 : 0;
+    
+    if (progressBar) {
+      progressBar.style.width = `${progress}%`;
+    }
+
+    if (backToTopBtn) {
+      if (scrollTop > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+  });
+
+  // 2. Back to Top Click
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // 3. ScrollSpy: Highlight Nav link according to active section
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href === `#${id}`) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(sec => observer.observe(sec));
+
+  // 4. Section Reveal on Scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sections.forEach(sec => {
+    sec.classList.add('reveal-section');
+    revealObserver.observe(sec);
+  });
+}
+
 
 // ==========================================
 // WEATHER — OPEN-METEO LIVE API (index.html)

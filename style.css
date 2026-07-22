@@ -1510,3 +1510,140 @@ p {
   border: 1px solid var(--border-color);
 }
 
+/* ==========================================
+   ONE-PAGE SPECIFIC STYLES & INTERACTION UI
+   ========================================== */
+
+/* Section scroll offset to compensate for sticky header */
+.section-anchor {
+  scroll-margin-top: 95px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll Progress Bar in Header */
+.scroll-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-teal), var(--accent-lime));
+  transition: width 0.1s linear;
+  z-index: 1001;
+}
+
+/* Back to Top Floating Button */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--accent-teal);
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 990;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: var(--accent-teal-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(13, 148, 136, 0.5);
+}
+
+/* Mobile Sticky CTA Bar at bottom */
+.mobile-sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  z-index: 980;
+  transition: transform 0.3s ease;
+}
+
+.mobile-sticky-cta .btn {
+  justify-content: center;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+@media (max-width: 768px) {
+  .mobile-sticky-cta {
+    display: block;
+  }
+  /* add margin to footer on mobile to avoid CTA overlap */
+  .footer {
+    padding-bottom: 80px;
+  }
+  .back-to-top {
+    bottom: 80px;
+  }
+}
+
+/* Section Reveal Animation */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Active Nav Link Styling for One-Page Scroll */
+.nav-link.active {
+  color: var(--accent-teal);
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-teal);
+  border-radius: 2px;
+}
+
+.btn-nav-cta {
+  background-color: var(--accent-teal-light) !important;
+  color: var(--accent-teal) !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.btn-nav-cta:hover, .btn-nav-cta.active {
+  background-color: var(--accent-teal) !important;
+  color: white !important;
+}
+
