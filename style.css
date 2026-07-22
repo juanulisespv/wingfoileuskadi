@@ -258,7 +258,7 @@ p {
   color: var(--accent-teal);
 }
 
-.nav-link::after {
+.nav-link:not(.btn-nav-cta)::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -269,12 +269,12 @@ p {
   transition: var(--transition);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.nav-link:not(.btn-nav-cta):hover::after,
+.nav-link:not(.btn-nav-cta).active::after {
   width: 100%;
 }
 
-.nav-link.active {
+.nav-link:not(.btn-nav-cta).active {
   color: var(--accent-teal);
 }
 
@@ -1634,12 +1634,12 @@ html {
 }
 
 /* Active Nav Link Styling for One-Page Scroll */
-.nav-link.active {
+.nav-link:not(.btn-nav-cta).active {
   color: var(--accent-teal) !important;
   font-weight: 700 !important;
 }
 
-.nav-link.active::after {
+.nav-link:not(.btn-nav-cta).active::after {
   content: '' !important;
   position: absolute !important;
   bottom: 0 !important;
@@ -1651,6 +1651,13 @@ html {
 }
 
 /* Dedicated CTA Button in Header Nav */
+.btn-nav-cta,
+.btn-nav-cta::after,
+.btn-nav-cta.active::after,
+.btn-nav-cta:hover::after {
+  content: none !important;
+}
+
 .btn-nav-cta {
   background: var(--accent-teal) !important;
   color: #ffffff !important;
@@ -1664,16 +1671,6 @@ html {
   justify-content: center !important;
   text-decoration: none !important;
   border: none !important;
-}
-
-/* Prevent underline line on Contacta CTA button */
-.btn-nav-cta::after,
-.btn-nav-cta.active::after,
-.btn-nav-cta:hover::after {
-  display: none !important;
-  content: none !important;
-  width: 0 !important;
-  height: 0 !important;
 }
 
 /* Distinct Active & Hover State for Contacta Button */
