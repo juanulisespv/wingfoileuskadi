@@ -213,6 +213,15 @@
 
               <!-- Spacer to keep wrapper height -->
               <div style="min-height:320px; visibility:hidden;" aria-hidden="true"></div>
+
+              <!-- Custom Zoom Controls -->
+              <div id="map-zoom-controls" style="position:absolute; top:12px; right:12px; z-index:10; display:flex; flex-direction:column; gap:4px;">
+                <button id="map-zoom-in" title="Acercar" aria-label="Acercar mapa"
+                  style="width:36px; height:36px; border-radius:8px; border:none; background:rgba(255,255,255,0.95); color:#333; font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition:background 0.15s;">+</button>
+                <div id="map-zoom-label" style="text-align:center; font-size:0.7rem; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.7); line-height:1.8;">15</div>
+                <button id="map-zoom-out" title="Alejar" aria-label="Alejar mapa"
+                  style="width:36px; height:36px; border-radius:8px; border:none; background:rgba(255,255,255,0.95); color:#333; font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition:background 0.15s;">−</button>
+              </div>
             </div>
 
             <!-- Spot Details Box -->
@@ -235,6 +244,10 @@
                     <span class="weather-value" style="font-size:1rem;">Octubre – Noviembre</span>
                   </div>
                 </div>
+
+                <!-- Mini forecast widget for Garaio -->
+                <div class="spot-forecast" id="forecast-garaio" data-lat="42.906222" data-lon="-2.544861"></div>
+
                 <a href="https://maps.google.com/?q=42.906222,-2.544861" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   Abrir en Google Maps
@@ -258,6 +271,10 @@
                     <span class="weather-value" style="font-size:1rem;">✓ Sin bañistas</span>
                   </div>
                 </div>
+
+                <!-- Mini forecast widget for Club Náutico -->
+                <div class="spot-forecast" id="forecast-nautico" data-lat="42.941174" data-lon="-2.602010"></div>
+
                 <a href="https://maps.google.com/?q=42.941174,-2.602010" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   Abrir en Google Maps
@@ -281,6 +298,10 @@
                     <span class="weather-value" style="font-size:1rem;">14 – 20 kts</span>
                   </div>
                 </div>
+
+                <!-- Mini forecast widget for Landa -->
+                <div class="spot-forecast" id="forecast-landa" data-lat="42.950869" data-lon="-2.588104"></div>
+
                 <a href="https://maps.google.com/?q=42.950869,-2.588104" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   Abrir en Google Maps

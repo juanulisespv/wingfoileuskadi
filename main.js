@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCommon();
   initWeather();
   initSpotsMap();
+  initSpotForecasts();
   initFAQ();
   initWizard();
   initCatalog();
@@ -205,23 +206,50 @@ function initWeather() {
 }
 
 // ==========================================
-// INTERACTIVE SPOTS MAP WITH TABS (index.html)
+// INTERACTIVE SPOTS MAP WITH TABS + ZOOM CONTROLS (index.html)
 // ==========================================
 function initSpotsMap() {
-  const tabBtns = document.querySelectorAll('.spot-tab-btn');
-  const details = document.querySelectorAll('.spot-detail');
+  const tabBtns   = document.querySelectorAll('.spot-tab-btn');
+  const details   = document.querySelectorAll('.spot-detail');
   const mapFrames = document.querySelectorAll('.spot-map-frame');
+  const zoomIn    = document.getElementById('map-zoom-in');
+  const zoomOut   = document.getElementById('map-zoom-out');
+  const zoomLabel = document.getElementById('map-zoom-label');
 
   if (tabBtns.length === 0) return;
 
+  // Coords & zoom state per spot
+  const spotData = {
+    garaio:  { q: '42.906222,-2.544861',  zoom: 15 },
+    nautico: { q: '42.941174,-2.602010',  zoom: 15 },
+    landa:   { q: '42.950869,-2.588104',  zoom: 15 },
+  };
+  const MIN_ZOOM = 10;
+  const MAX_ZOOM = 18;
+
+  let activeSpotId = 'garaio';
+
+  function buildSrc(spotId) {
+    const d = spotData[spotId];
+    return `https://maps.google.com/maps?q=${d.q}&z=${d.zoom}&output=embed`;
+  }
+
+  function refreshZoomLabel() {
+    if (zoomLabel) zoomLabel.textContent = spotData[activeSpotId].zoom;
+    if (zoomIn)  zoomIn.disabled  = spotData[activeSpotId].zoom >= MAX_ZOOM;
+    if (zoomOut) zoomOut.disabled = spotData[activeSpotId].zoom <= MIN_ZOOM;
+  }
+
   function activateSpot(spotId) {
-    // Tabs
+    activeSpotId = spotId;
+
+    // Tabs styling
     tabBtns.forEach(btn => {
       const isActive = btn.getAttribute('data-spot') === spotId;
       btn.classList.toggle('active', isActive);
-      btn.style.background    = isActive ? 'var(--accent-teal)' : 'var(--bg-card)';
-      btn.style.color         = isActive ? '#fff' : 'var(--text-primary)';
-      btn.style.borderColor   = isActive ? 'var(--accent-teal)' : 'var(--border-color)';
+      btn.style.background  = isActive ? 'var(--accent-teal)' : 'var(--bg-card)';
+      btn.style.color       = isActive ? '#fff'               : 'var(--text-primary)';
+      btn.style.borderColor = isActive ? 'var(--accent-teal)' : 'var(--border-color)';
     });
 
     // Detail cards
@@ -231,17 +259,172 @@ function initSpotsMap() {
 
     // Map iframes
     mapFrames.forEach(f => {
-      f.style.display = (f.id === `map-${spotId}`) ? 'block' : 'none';
+      const isTarget = f.id === `map-${spotId}`;
+      f.style.display = isTarget ? 'block' : 'none';
+      if (isTarget) f.src = buildSrc(spotId);
+    });
+
+    refreshZoomLabel();
+  }
+
+  // Zoom button handlers
+  if (zoomIn) {
+    zoomIn.addEventListener('click', () => {
+      if (spotData[activeSpotId].zoom < MAX_ZOOM) {
+        spotData[activeSpotId].zoom++;
+        const frame = document.getElementById(`map-${activeSpotId}`);
+        if (frame) frame.src = buildSrc(activeSpotId);
+        refreshZoomLabel();
+      }
     });
   }
 
+  if (zoomOut) {
+    zoomOut.addEventListener('click', () => {
+      if (spotData[activeSpotId].zoom > MIN_ZOOM) {
+        spotData[activeSpotId].zoom--;
+        const frame = document.getElementById(`map-${activeSpotId}`);
+        if (frame) frame.src = buildSrc(activeSpotId);
+        refreshZoomLabel();
+      }
+    });
+  }
+
+  // Hover effect on zoom buttons
+  [zoomIn, zoomOut].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('mouseenter', () => btn.style.background = '#f0f0f0');
+    btn.addEventListener('mouseleave', () => btn.style.background = 'rgba(255,255,255,0.95)');
+  });
+
+  // Tab click handlers
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      activateSpot(btn.getAttribute('data-spot'));
+      const id = btn.getAttribute('data-spot');
+      activateSpot(id);
+      // Lazy-load forecast for this spot on first click
+      if (window.loadSpotForecast) window.loadSpotForecast(id);
     });
   });
+
+  // Init zoom label
+  refreshZoomLabel();
 }
 
+
+// ==========================================
+// SPOT MINI-FORECASTS — Open-Meteo per-spot (index.html)
+// ==========================================
+function initSpotForecasts() {
+  const containers = document.querySelectorAll('.spot-forecast');
+  if (containers.length === 0) return;
+
+  const loaded = {};   // Track which spots have already been fetched
+
+  function degreesToCompass(deg) {
+    const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
+    return dirs[Math.round(deg / 22.5) % 16];
+  }
+  function degreesToArrow(deg) {
+    const arrows = ['↓','↙','←','↖','↑','↗','→','↘'];
+    return arrows[Math.round(deg / 45) % 8];
+  }
+  function forecastStatus(w) {
+    if (w < 8)  return { cls:'f-bad',    label:'Flojo'     };
+    if (w <= 12) return { cls:'f-ok',    label:'Iniciación'};
+    if (w <= 25) return { cls:'f-good',  label:'✔ Óptimo' };
+    if (w <= 32) return { cls:'f-strong',label:'Fuerte'    };
+    return               { cls:'f-bad',  label:'Extremo'   };
+  }
+  function conditionBanner(w, g) {
+    if (w < 8)         return { cls:'status-caution', icon:'🟡', text:`Viento flojo (${Math.round(w)} kts). No apto para wingfoil.` };
+    if (w <= 12)       return { cls:'status-caution', icon:'🟡', text:`Brisa ligera (${Math.round(w)} kts). Iniciación con alas grandes.` };
+    if (w <= 25 && g <= 32) return { cls:'status-optimal', icon:'🟢', text:`¡Condiciones óptimas! (${Math.round(w)} kts). Aptos todos los niveles.` };
+    if (w <= 32)       return { cls:'status-caution', icon:'🟠', text:`Viento fuerte (${Math.round(w)} kts). Solo riders avanzados.` };
+    return                    { cls:'status-danger',  icon:'🔴', text:`Viento extremo (${Math.round(w)} kts). NO recomendado.` };
+  }
+  function formatDay(dateStr, i) {
+    if (i === 0) return 'Hoy';
+    if (i === 1) return 'Mañana';
+    return new Date(dateStr + 'T12:00:00').toLocaleDateString('es-ES', { weekday:'short' }).replace('.','');
+  }
+
+  async function loadSpotForecast(spotId) {
+    if (loaded[spotId]) return;      // Already fetched
+    const el  = document.getElementById(`forecast-${spotId}`);
+    if (!el) return;
+    const lat = el.dataset.lat;
+    const lon = el.dataset.lon;
+
+    // Show loading
+    el.innerHTML = `
+      <div style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); font-size:0.82rem; color:var(--text-light);">
+        <div class="weather-skeleton" style="height:10px; border-radius:4px; background:var(--border-color); margin-bottom:6px; animation:skeleton-pulse 1.5s infinite;"></div>
+        <div class="weather-skeleton" style="height:10px; border-radius:4px; background:var(--border-color); width:70%; animation:skeleton-pulse 1.5s infinite;"></div>
+        <p style="margin-top:8px; font-size:0.78rem;">Cargando previsión…</p>
+      </div>`;
+
+    try {
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+        `&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m` +
+        `&daily=wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,temperature_2m_max,temperature_2m_min` +
+        `&wind_speed_unit=kn&timezone=Europe%2FMadrid&forecast_days=5`;
+      const res  = await fetch(url);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      const cur  = data.current;
+      const day  = data.daily;
+
+      const { cls: bCls, icon, text: bText } = conditionBanner(cur.wind_speed_10m, cur.wind_gusts_10m);
+
+      // Build forecast cards HTML
+      let forecastHTML = '';
+      if (day) {
+        day.time.forEach((dateStr, i) => {
+          const w  = day.wind_speed_10m_max[i];
+          const g  = day.wind_gusts_10m_max[i];
+          const d  = day.wind_direction_10m_dominant[i];
+          const tH = day.temperature_2m_max[i];
+          const tL = day.temperature_2m_min[i];
+          const st = forecastStatus(w);
+          forecastHTML += `
+            <div class="forecast-card ${st.cls}" style="min-width:70px; flex:1;">
+              <span class="fc-day">${formatDay(dateStr, i)}</span>
+              <span class="fc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
+              <span class="fc-wind">${Math.round(w)} kts</span>
+              <span class="fc-gust">↑${Math.round(g)}</span>
+              <span class="fc-temp">${Math.round(tH)}°/${Math.round(tL)}°</span>
+              <span class="fc-status">${st.label}</span>
+            </div>`;
+        });
+      }
+
+      el.innerHTML = `
+        <div style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color);">
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:10px;">
+            <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
+            <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
+            <div class="weather-item"><span class="weather-label">⚡ Rachas</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_gusts_10m)} kts</span></div>
+            <div class="weather-item"><span class="weather-label">🌡️ Temp.</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.temperature_2m)}°C</span></div>
+          </div>
+          <div class="weather-status ${bCls}" style="margin-bottom:10px; font-size:0.82rem;">${icon} ${bText}</div>
+          <p style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-light); margin-bottom:6px;">Previsión 5 días</p>
+          <div class="forecast-strip" style="display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto;">${forecastHTML}</div>
+          <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;">Fuente: Open-Meteo · Datos en tiempo real</p>
+        </div>`;
+
+      loaded[spotId] = true;
+    } catch {
+      el.innerHTML = `<p style="margin-top:10px; font-size:0.82rem; color:var(--text-light);">⚠️ No se pudo cargar la previsión.</p>`;
+    }
+  }
+
+  // Expose function globally so initSpotsMap can call it
+  window.loadSpotForecast = loadSpotForecast;
+
+  // Load Garaio immediately (default active spot)
+  loadSpotForecast('garaio');
+}
 
 // ==========================================
 // FAQ COLLAPSIBLE ACCORDION & LIVE SEARCH (FAQ.html)
