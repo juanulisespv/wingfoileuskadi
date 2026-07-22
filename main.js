@@ -93,30 +93,54 @@ function initOnePageScroll() {
     });
   }
 
-  // 3. ScrollSpy: Highlight Nav link according to active section
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -60% 0px',
-    threshold: 0
-  };
+  // 3. Robust ScrollSpy: Highlight Nav link according to active section
+  function updateScrollSpy() {
+    const scrollPosition = window.scrollY + 140; // Offset for header + padding
+    let currentSectionId = '';
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href === `#${id}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
-        });
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const height = sec.offsetHeight;
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        currentSectionId = sec.getAttribute('id');
       }
     });
-  }, observerOptions);
 
-  sections.forEach(sec => observer.observe(sec));
+    // Special check for top of page
+    if (window.scrollY < 100) {
+      currentSectionId = 'inicio';
+    }
+
+    // Special check for bottom of page (Contacto / Footer)
+    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60)) {
+      currentSectionId = 'contacto';
+    }
+
+    if (currentSectionId) {
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === `#${currentSectionId}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+  }
+
+  window.addEventListener('scroll', updateScrollSpy, { passive: true });
+  updateScrollSpy(); // Initial execution
+
+  // Instant active feedback on nav link click
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  });
 
   // 4. Section Reveal on Scroll
   const revealObserver = new IntersectionObserver((entries) => {
@@ -125,7 +149,7 @@ function initOnePageScroll() {
         entry.target.classList.add('revealed');
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
   sections.forEach(sec => {
     sec.classList.add('reveal-section');
