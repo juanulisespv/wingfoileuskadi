@@ -94,26 +94,26 @@ function initOnePageScroll() {
     });
   }
 
-  // 3. Robust ScrollSpy: Highlight Nav link according to active section
+  // 3. Viewport-based ScrollSpy: Highlight Nav link according to visible section
   function updateScrollSpy() {
-    const scrollPosition = window.scrollY + 140; // Offset for header + padding
+    const headerOffset = 120; // Height of fixed header + buffer
     let currentSectionId = '';
 
     sections.forEach(sec => {
-      const top = sec.offsetTop;
-      const height = sec.offsetHeight;
-      if (scrollPosition >= top && scrollPosition < top + height) {
+      const rect = sec.getBoundingClientRect();
+      // Section is active if top is above reading line and bottom is below reading line
+      if (rect.top <= headerOffset && rect.bottom > headerOffset) {
         currentSectionId = sec.getAttribute('id');
       }
     });
 
-    // Special check for top of page
-    if (window.scrollY < 100) {
+    // Top of page edge case
+    if (window.scrollY < 120) {
       currentSectionId = 'inicio';
     }
 
-    // Special check for bottom of page (Contacto / Footer)
-    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60)) {
+    // Bottom of page edge case (Contacto / Footer)
+    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 80)) {
       currentSectionId = 'contacto';
     }
 
