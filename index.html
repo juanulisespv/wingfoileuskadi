@@ -168,30 +168,18 @@
           </div>
 
           <div class="spots-section">
-            <!-- Interactive SVG Vector Map -->
-            <div class="spots-map-wrapper">
-              <svg class="spots-svg" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Outer shoreline / Land -->
-                <rect width="400" height="300" fill="#f8fafc" rx="8" />
-                <path class="map-shoreline" d="M 0 0 L 400 0 L 400 300 L 0 300 Z" />
-                
-                <!-- Embalse shape / Water body -->
-                <path class="map-lake-bg" d="M 120 40 C 180 50, 190 20, 220 30 C 250 40, 270 90, 250 120 C 230 150, 280 180, 260 220 C 240 260, 180 280, 160 250 C 140 220, 160 170, 130 150 C 100 130, 90 90, 120 40 Z" />
-                
-                <!-- Markers -->
-                <g class="map-spot-marker active" data-spot="nautico">
-                  <circle cx="210" cy="80" r="9" />
-                  <text x="210" y="65" class="map-spot-label">C. Náutico Vitoria</text>
-                </g>
-                <g class="map-spot-marker" data-spot="ullibarri">
-                  <circle cx="230" cy="130" r="9" />
-                  <text x="285" y="134" class="map-spot-label">Ullibarri-Gamboa</text>
-                </g>
-                <g class="map-spot-marker" data-spot="garaio">
-                  <circle cx="180" cy="230" r="9" />
-                  <text x="180" y="250" class="map-spot-label">Garaio</text>
-                </g>
-              </svg>
+            <!-- Google Maps Embed: Garaio (42.906222, -2.544861) -->
+            <div class="spots-map-wrapper" style="overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--card-shadow);">
+              <iframe
+                src="https://maps.google.com/maps?q=42.906222,-2.544861&z=15&output=embed"
+                width="100%"
+                height="100%"
+                style="border:0; min-height: 320px; display: block;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación Spot Garaio – Wingfoil Euskadi">
+              </iframe>
             </div>
 
             <!-- Spot Details Box -->
@@ -237,10 +225,10 @@
               <!-- Garaio Detail -->
               <div class="spot-detail" id="spot-garaio">
                 <div class="spot-detail-header">
-                  <h3 class="spot-detail-name">Playa de Garaio</h3>
-                  <span class="spot-detail-wind-tag">Vientos: Suroeste (SO)</span>
+                  <h3 class="spot-detail-name">Playa de Garaio ★</h3>
+                  <span class="spot-detail-wind-tag">Spot habitual &middot; Vientos: Suroeste (SO)</span>
                 </div>
-                <p>Con viento <strong>Suroeste</strong>, los cursos se dan en Garaio. Su gran ventaja es que la orientación es <strong>Sideshore</strong>: el viento sopla prácticamente hacia la orilla, lo que hace mucho más fácil y seguro volver a tierra. En los otros spots, el viento puede alejarte de la orilla, lo que requiere más experiencia. Por eso Garaio es especialmente recomendable para aprender. Vientos comunes de Octubre a Noviembre, con intensidades entre 12-25 kts.</p>
+                <p>Garaio es el spot donde se imparte la <strong>mayoría de los cursos</strong>, ya que el viento Suroeste —el más frecuente en el embalse— sopla prácticamente hacia la orilla (<strong>Sideshore</strong>). Esto hace que volver a tierra sea fácil y seguro, incluso para los que empiezan. En los otros spots el viento puede alejarte de la orilla, lo que requiere más experiencia. Vientos comunes de Octubre a Noviembre, con intensidades entre 12-25 kts.</p>
                 <div class="spot-detail-grid">
                   <div class="weather-item">
                     <span class="weather-label">Orientación</span>
@@ -251,6 +239,10 @@
                     <span class="weather-value" style="font-size: 1rem;">Octubre – Noviembre</span>
                   </div>
                 </div>
+                <a href="https://maps.google.com/?q=42.906222,-2.544861" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Abrir en Google Maps
+                </a>
               </div>
             </div>
           </div>
