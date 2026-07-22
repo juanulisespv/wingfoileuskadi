@@ -814,22 +814,13 @@ function initCatalog() {
 // ==========================================
 function initContact() {
   const contactForm = document.getElementById('contact-form');
-  const inboxList = document.getElementById('inbox-list');
-  const inboxEmpty = document.getElementById('inbox-empty');
-  const btnClearInbox = document.getElementById('btn-clear-inbox');
-
   if (!contactForm) return;
-
-  // Load and render existing messages from localStorage
-  let messages = JSON.parse(localStorage.getItem('wingfoil_messages')) || [];
-  renderMessages();
 
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('form-name').value.trim();
     const email = document.getElementById('form-email').value.trim();
-    const phone = document.getElementById('form-phone').value.trim();
     const message = document.getElementById('form-message').value.trim();
 
     if (!name || !email || !message) {
@@ -837,87 +828,12 @@ function initContact() {
       return;
     }
 
-    // Add new message mock record
-    const newMsg = {
-      id: Date.now(),
-      name,
-      email,
-      phone: phone || 'No indicado',
-      message,
-      date: new Date().toLocaleString('es-ES')
-    };
-
-    messages.unshift(newMsg);
-    localStorage.setItem('wingfoil_messages', JSON.stringify(messages));
-    
     // Reset Form
     contactForm.reset();
     
     // UI Feedback
-    showToast('✉️ ¡Mensaje enviado con éxito! Guardado en el buzón local.', 'success');
-    renderMessages();
+    showToast('✉️ ¡Consulta enviada con éxito! Te responderemos lo antes posible.', 'success');
   });
-
-  if (btnClearInbox) {
-    btnClearInbox.addEventListener('click', () => {
-      messages = [];
-      localStorage.removeItem('wingfoil_messages');
-      renderMessages();
-      showToast('🗑️ Buzón de entrada vaciado.', 'info');
-    });
-  }
-
-  function renderMessages() {
-    if (!inboxList) return;
-
-    inboxList.innerHTML = '';
-    
-    if (messages.length === 0) {
-      if (inboxEmpty) inboxEmpty.style.display = 'block';
-      return;
-    }
-
-    if (inboxEmpty) inboxEmpty.style.display = 'none';
-
-    messages.forEach(msg => {
-      const card = document.createElement('div');
-      card.className = 'inbox-card';
-      card.innerHTML = `
-        <div class="inbox-card-meta">
-          <span class="inbox-card-sender">${escapeHtml(msg.name)} (${escapeHtml(msg.email)})</span>
-          <span>${msg.date}</span>
-        </div>
-        <p style="font-size: 0.9rem; margin-bottom: 4px;"><strong>Teléfono:</strong> ${escapeHtml(msg.phone)}</p>
-        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0;">${escapeHtml(msg.message)}</p>
-        <button class="btn-delete-msg" data-id="${msg.id}" title="Eliminar mensaje">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-        </button>
-      `;
-      inboxList.appendChild(card);
-    });
-
-    // Add event listeners to delete buttons
-    inboxList.querySelectorAll('.btn-delete-msg').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idToDelete = parseInt(btn.getAttribute('data-id'));
-        messages = messages.filter(m => m.id !== idToDelete);
-        localStorage.setItem('wingfoil_messages', JSON.stringify(messages));
-        renderMessages();
-        showToast('🗑️ Mensaje eliminado.', 'info');
-      });
-    });
-  }
-
-  function escapeHtml(text) {
-    const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#039;'
-    };
-    return text.replace(/[&<>"']/g, m => map[m]);
-  }
 }
 
 // ==========================================
