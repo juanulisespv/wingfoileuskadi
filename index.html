@@ -167,63 +167,59 @@
             <p>Damos los cursos en el embalse de Ullibarri, con sus 146 hm³ el embalse más grande del País Vasco, a 12 km al NE de Vitoria-Gasteiz. Gracias a la orografía que rodea el embalse, son navegables los vientos del Norte y los Sures, Surestes y Suroestes —siendo casi el único lugar de Euskadi donde poder navegar todos los vientos del Sur. Todas las zonas están apartadas de las zonas de baño, con agua plana ideal para el aprendizaje.</p>
           </div>
 
+          <!-- Spot selector tabs -->
+          <div class="spot-tabs" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
+            <button class="spot-tab-btn active" data-spot="garaio" style="display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:var(--radius-md); border:2px solid var(--accent-teal); background:var(--accent-teal); color:#fff; font-weight:700; font-size:0.9rem; cursor:pointer; transition:all 0.2s;">
+              ★ Garaio <span style="font-weight:400; font-size:0.8rem; opacity:0.85;">(habitual)</span>
+            </button>
+            <button class="spot-tab-btn" data-spot="nautico" style="display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:var(--radius-md); border:2px solid var(--border-color); background:var(--bg-card); color:var(--text-primary); font-weight:600; font-size:0.9rem; cursor:pointer; transition:all 0.2s;">
+              Club Náutico Vitoria
+            </button>
+            <button class="spot-tab-btn" data-spot="landa" style="display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:var(--radius-md); border:2px solid var(--border-color); background:var(--bg-card); color:var(--text-primary); font-weight:600; font-size:0.9rem; cursor:pointer; transition:all 0.2s;">
+              Landa
+            </button>
+          </div>
+
           <div class="spots-section">
-            <!-- Google Maps Embed: Garaio (42.906222, -2.544861) -->
-            <div class="spots-map-wrapper" style="overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--card-shadow);">
-              <iframe
+            <!-- Google Maps iframes — one per spot, toggled by JS -->
+            <div class="spots-map-wrapper" style="overflow:hidden; border-radius:var(--radius-lg); box-shadow:var(--card-shadow); position:relative;">
+
+              <!-- Garaio map (default visible) -->
+              <iframe id="map-garaio" class="spot-map-frame active"
                 src="https://maps.google.com/maps?q=42.906222,-2.544861&z=15&output=embed"
-                width="100%"
-                height="100%"
-                style="border:0; min-height: 320px; display: block;"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                title="Ubicación Spot Garaio – Wingfoil Euskadi">
+                width="100%" height="100%"
+                style="border:0; min-height:320px; display:block; position:absolute; top:0; left:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Spot Garaio – Wingfoil Euskadi">
               </iframe>
+
+              <!-- Club Náutico map -->
+              <iframe id="map-nautico" class="spot-map-frame"
+                src="https://maps.google.com/maps?q=42.941174,-2.602010&z=15&output=embed"
+                width="100%" height="100%"
+                style="border:0; min-height:320px; display:none; position:absolute; top:0; left:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Club Náutico Vitoria – Wingfoil Euskadi">
+              </iframe>
+
+              <!-- Landa map -->
+              <iframe id="map-landa" class="spot-map-frame"
+                src="https://maps.google.com/maps?q=42.950869,-2.588104&z=15&output=embed"
+                width="100%" height="100%"
+                style="border:0; min-height:320px; display:none; position:absolute; top:0; left:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Spot Landa – Wingfoil Euskadi">
+              </iframe>
+
+              <!-- Spacer to keep wrapper height -->
+              <div style="min-height:320px; visibility:hidden;" aria-hidden="true"></div>
             </div>
 
             <!-- Spot Details Box -->
             <div class="spots-info-card">
-              <!-- Náutico Detail -->
-              <div class="spot-detail active" id="spot-nautico">
-                <div class="spot-detail-header">
-                  <h3 class="spot-detail-name">Club Náutico Vitoria</h3>
-                  <span class="spot-detail-wind-tag">Vientos: Norte, Noroeste, Sur, Sureste</span>
-                </div>
-                <p>Con vientos del <strong>Norte, Noroeste, Sur o Sureste</strong>, los cursos se suelen dar en el Club Náutico Vitoria o en los alrededores del pueblo de Ullibarri-Gamboa. El agua plana del embalse hace de esta zona una de las mejores de todo el País Vasco para el aprendizaje.</p>
-                <div class="spot-detail-grid">
-                  <div class="weather-item">
-                    <span class="weather-label">Entorno</span>
-                    <span class="weather-value" style="font-size: 1rem;">Agua Plana</span>
-                  </div>
-                  <div class="weather-item">
-                    <span class="weather-label">Separado de zonas de baño</span>
-                    <span class="weather-value" style="font-size: 1rem;">✓ Sin bañistas</span>
-                  </div>
-                </div>
-              </div>
 
-              <!-- Ullibarri Detail -->
-              <div class="spot-detail" id="spot-ullibarri">
-                <div class="spot-detail-header">
-                  <h3 class="spot-detail-name">Ullibarri-Gamboa (Pueblo)</h3>
-                  <span class="spot-detail-wind-tag">Vientos: Norte, Noroeste, Sur, Sureste</span>
-                </div>
-                <p>Junto con el Club Náutico, esta zona se utiliza con vientos del <strong>Norte, Noroeste, Sur y Sureste</strong>. Los vientos del <strong>Sur y Sureste</strong> son especialmente comunes en Septiembre y Octubre, con intensidades que rondan los 14-20 kts y pueden alcanzar los 40 kts en los días más fuertes. Es uno de los pocos spots de Euskadi donde se puede navegar con vientos del Sur.</p>
-                <div class="spot-detail-grid">
-                  <div class="weather-item">
-                    <span class="weather-label">Temporada Sur/SE</span>
-                    <span class="weather-value" style="font-size: 1rem;">Septiembre – Octubre</span>
-                  </div>
-                  <div class="weather-item">
-                    <span class="weather-label">Intensidad habitual</span>
-                    <span class="weather-value" style="font-size: 1rem;">14 – 20 kts</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Garaio Detail -->
-              <div class="spot-detail" id="spot-garaio">
+              <!-- Garaio Detail (default active) -->
+              <div class="spot-detail active" id="spot-garaio">
                 <div class="spot-detail-header">
                   <h3 class="spot-detail-name">Playa de Garaio ★</h3>
                   <span class="spot-detail-wind-tag">Spot habitual &middot; Vientos: Suroeste (SO)</span>
@@ -232,14 +228,60 @@
                 <div class="spot-detail-grid">
                   <div class="weather-item">
                     <span class="weather-label">Orientación</span>
-                    <span class="weather-value" style="font-size: 1rem;">Sideshore (hacia orilla)</span>
+                    <span class="weather-value" style="font-size:1rem;">Sideshore (hacia orilla)</span>
                   </div>
                   <div class="weather-item">
                     <span class="weather-label">Temporada SO</span>
-                    <span class="weather-value" style="font-size: 1rem;">Octubre – Noviembre</span>
+                    <span class="weather-value" style="font-size:1rem;">Octubre – Noviembre</span>
                   </div>
                 </div>
                 <a href="https://maps.google.com/?q=42.906222,-2.544861" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Abrir en Google Maps
+                </a>
+              </div>
+
+              <!-- Club Náutico Detail -->
+              <div class="spot-detail" id="spot-nautico">
+                <div class="spot-detail-header">
+                  <h3 class="spot-detail-name">Club Náutico Vitoria</h3>
+                  <span class="spot-detail-wind-tag">Vientos: Norte, Noroeste, Sur, Sureste</span>
+                </div>
+                <p>Con vientos del <strong>Norte, Noroeste, Sur o Sureste</strong>, los cursos se suelen dar en el Club Náutico Vitoria o en los alrededores del embalse. El agua plana del embalse hace de esta zona una de las mejores de todo el País Vasco para el aprendizaje.</p>
+                <div class="spot-detail-grid">
+                  <div class="weather-item">
+                    <span class="weather-label">Entorno</span>
+                    <span class="weather-value" style="font-size:1rem;">Agua Plana</span>
+                  </div>
+                  <div class="weather-item">
+                    <span class="weather-label">Separado de zonas de baño</span>
+                    <span class="weather-value" style="font-size:1rem;">✓ Sin bañistas</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/?q=42.941174,-2.602010" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  Abrir en Google Maps
+                </a>
+              </div>
+
+              <!-- Landa Detail -->
+              <div class="spot-detail" id="spot-landa">
+                <div class="spot-detail-header">
+                  <h3 class="spot-detail-name">Landa</h3>
+                  <span class="spot-detail-wind-tag">Vientos: Norte, Noroeste, Sur, Sureste</span>
+                </div>
+                <p>Junto con el Club Náutico, Landa es otra de las zonas del embalse donde se imparten cursos con vientos del <strong>Norte, Noroeste, Sur y Sureste</strong>. Los vientos del <strong>Sur y Sureste</strong> son especialmente comunes en Septiembre y Octubre, con intensidades que rondan los 14-20 kts y pueden alcanzar los 40 kts en los días más fuertes. Es uno de los pocos spots de Euskadi donde se puede navegar con vientos del Sur.</p>
+                <div class="spot-detail-grid">
+                  <div class="weather-item">
+                    <span class="weather-label">Temporada Sur/SE</span>
+                    <span class="weather-value" style="font-size:1rem;">Septiembre – Octubre</span>
+                  </div>
+                  <div class="weather-item">
+                    <span class="weather-label">Intensidad habitual</span>
+                    <span class="weather-value" style="font-size:1rem;">14 – 20 kts</span>
+                  </div>
+                </div>
+                <a href="https://maps.google.com/?q=42.950869,-2.588104" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; margin-top:14px; font-size:0.875rem; font-weight:600; color:var(--accent-teal); text-decoration:none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                   Abrir en Google Maps
                 </a>

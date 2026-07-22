@@ -205,31 +205,43 @@ function initWeather() {
 }
 
 // ==========================================
-// INTERACTIVE SPOTS VECTOR MAP (index.html)
+// INTERACTIVE SPOTS MAP WITH TABS (index.html)
 // ==========================================
 function initSpotsMap() {
-  const mapMarkers = document.querySelectorAll('.map-spot-marker');
+  const tabBtns = document.querySelectorAll('.spot-tab-btn');
   const details = document.querySelectorAll('.spot-detail');
-  
-  if (mapMarkers.length === 0) return;
+  const mapFrames = document.querySelectorAll('.spot-map-frame');
 
-  mapMarkers.forEach(marker => {
-    marker.addEventListener('click', () => {
-      const spotId = marker.getAttribute('data-spot');
-      
-      // Deactivate all markers and details
-      mapMarkers.forEach(m => m.classList.remove('active'));
-      details.forEach(d => d.classList.remove('active'));
-      
-      // Activate target
-      marker.classList.add('active');
-      const targetDetail = document.getElementById(`spot-${spotId}`);
-      if (targetDetail) {
-        targetDetail.classList.add('active');
-      }
+  if (tabBtns.length === 0) return;
+
+  function activateSpot(spotId) {
+    // Tabs
+    tabBtns.forEach(btn => {
+      const isActive = btn.getAttribute('data-spot') === spotId;
+      btn.classList.toggle('active', isActive);
+      btn.style.background    = isActive ? 'var(--accent-teal)' : 'var(--bg-card)';
+      btn.style.color         = isActive ? '#fff' : 'var(--text-primary)';
+      btn.style.borderColor   = isActive ? 'var(--accent-teal)' : 'var(--border-color)';
+    });
+
+    // Detail cards
+    details.forEach(d => d.classList.remove('active'));
+    const targetDetail = document.getElementById(`spot-${spotId}`);
+    if (targetDetail) targetDetail.classList.add('active');
+
+    // Map iframes
+    mapFrames.forEach(f => {
+      f.style.display = (f.id === `map-${spotId}`) ? 'block' : 'none';
+    });
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      activateSpot(btn.getAttribute('data-spot'));
     });
   });
 }
+
 
 // ==========================================
 // FAQ COLLAPSIBLE ACCORDION & LIVE SEARCH (FAQ.html)
