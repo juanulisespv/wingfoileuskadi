@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWizard();
   initCatalog();
   initContact();
+  initCourseModal();
 });
 
 // ==========================================
@@ -955,3 +956,76 @@ function showToast(message, type = 'success') {
     }, 300);
   }, 3500);
 }
+
+// ==========================================
+// COURSE BOOKING & STRIPE MODAL
+// ==========================================
+function initCourseModal() {
+  const modal = document.getElementById('course-modal');
+  const closeBtn = document.getElementById('course-modal-close');
+  const titleEl = document.getElementById('course-modal-title');
+  const priceEl = document.getElementById('course-modal-price');
+  const btnStripe = document.getElementById('btn-stripe-pay');
+  const btnForm = document.getElementById('btn-form-pay');
+  const bookBtns = document.querySelectorAll('.btn-book-course');
+
+  if (!modal) return;
+
+  let currentCourseName = '';
+  let currentCoursePrice = '';
+
+  function openModal(courseName, price) {
+    currentCourseName = courseName;
+    currentCoursePrice = price;
+    if (titleEl) titleEl.textContent = `Curso ${courseName}`;
+    if (priceEl) priceEl.textContent = `${price}€`;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+  }
+
+  bookBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const courseName = btn.getAttribute('data-course');
+      const price = btn.getAttribute('data-price');
+      openModal(courseName, price);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // Stripe Payment Option
+  if (btnStripe) {
+    btnStripe.addEventListener('click', () => {
+      showToast(`💳 Redirigiendo a pasarela segura de Stripe para el Curso ${currentCourseName}...`, 'info');
+      setTimeout(() => {
+        alert(`Simulador de Pasarela Stripe:\n\nCurso: ${currentCourseName}\nTotal a pagar: ${currentCoursePrice}€\n\n(En producción, aquí el usuario es redirigido a tu Stripe Payment Link oficial).`);
+        closeModal();
+      }, 800);
+    });
+  }
+
+  // Pre-book & Pay later Option (Fill Form)
+  if (btnForm) {
+    btnForm.addEventListener('click', () => {
+      closeModal();
+      const messageField = document.getElementById('form-message');
+      if (messageField) {
+        messageField.value = `Hola, estoy interesado en reservar el Curso ${currentCourseName} (${currentCoursePrice}€). Por favor confirmadme fechas disponibles.`;
+        messageField.focus();
+      }
+      const contactSec = document.getElementById('contacto');
+      if (contactSec) {
+        contactSec.scrollIntoView({ behavior: 'smooth' });
+      }
+      showToast('📝 Hemos preparado el formulario con tu curso seleccionado.', 'success');
+    });
+  }
+}
+
