@@ -1650,16 +1650,45 @@ html {
   border-radius: 3px !important;
 }
 
+/* Dedicated CTA Button in Header Nav */
 .btn-nav-cta {
-  background-color: var(--accent-teal-light) !important;
-  color: var(--accent-teal) !important;
+  background: var(--accent-teal) !important;
+  color: #ffffff !important;
   font-weight: 700 !important;
-  padding: 6px 14px !important;
-  border-radius: var(--radius-md) !important;
+  padding: 8px 22px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.3) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  border: none !important;
 }
 
-.btn-nav-cta:hover, .btn-nav-cta.active {
-  background-color: var(--accent-teal) !important;
-  color: white !important;
+/* Prevent underline line on Contacta CTA button */
+.btn-nav-cta::after,
+.btn-nav-cta.active::after,
+.btn-nav-cta:hover::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
+
+/* Distinct Active & Hover State for Contacta Button */
+.btn-nav-cta:hover {
+  background: var(--accent-teal-hover) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.04) !important;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45) !important;
+}
+
+.btn-nav-cta.active {
+  background: linear-gradient(135deg, var(--accent-teal-hover), #0f766e) !important;
+  color: #ffffff !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 22px rgba(13, 148, 136, 0.5), 0 0 0 4px var(--accent-teal-light) !important;
+}
+
 
