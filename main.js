@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCatalog();
   initContact();
   initCourseModal();
+  initBackgroundVideos();
 });
 
 // ==========================================
@@ -945,4 +946,25 @@ function initCourseModal() {
     });
   }
 }
+
+// ==========================================
+// BACKGROUND VIDEO PRELOADER & FLUIDITY
+// ==========================================
+function initBackgroundVideos() {
+  const videos = document.querySelectorAll('video[autoplay]');
+  videos.forEach(video => {
+    video.preload = 'auto';
+    video.load();
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        video.classList.add('video-playing');
+      }).catch(error => {
+        console.log('Autoplay prevented or video loading in background:', error);
+      });
+    }
+  });
+}
+
 
