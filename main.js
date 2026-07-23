@@ -593,7 +593,8 @@ function initWizard() {
   let selections = {
     sportExp: '', // 'yes', 'no'
     windExp: '',  // 'yes', 'no'
-    objective: '' // 'learn', 'foil'
+    objective: '', // 'learn', 'foil'
+    groupSize: '' // 'solo', 'pareja'
   };
 
   optionCards.forEach(card => {
@@ -651,15 +652,15 @@ function initWizard() {
     resultBox.style.display = 'block';
     
     // Logic for course matches
-    if (selections.sportExp === 'no' && selections.windExp === 'no') {
-      resultTitle.innerHTML = '🟢 Curso Básico de Iniciación (Tablas SUP)';
-      resultDesc.innerHTML = 'Tu mejor opción es empezar desde los cimientos. Te enseñaremos rumbos de viento y estabilidad en una tabla de Stand-Up Paddle antes de añadir el Foil. ¡Seguridad y diversión garantizadas!';
-    } else if (selections.objective === 'foil' || (selections.sportExp === 'yes' && selections.windExp === 'yes')) {
-      resultTitle.innerHTML = '⚡ Curso Foil Avanzado e Independiente';
-      resultDesc.innerHTML = 'Ya posees experiencia en tablas y viento. Podemos saltar la iniciación básica e ir directos a manejar el ala Wing con el Foil, optimizando tu vuelo sobre el agua y trasluchadas (jibes) avanzadas.';
+    if ((selections.sportExp === 'yes' && selections.windExp === 'yes') || selections.objective === 'foil') {
+      resultTitle.innerHTML = '⚡ Curso de Perfeccionamiento';
+      resultDesc.innerHTML = 'Ya posees experiencia en tablas y viento. Podemos ir directos a perfeccionar tu técnica con el ala Wing y el Foil, optimizando tu vuelo sobre el agua y trasluchadas (jibes) avanzadas.';
+    } else if (selections.groupSize === 'pareja') {
+      resultTitle.innerHTML = '👥 Curso de Iniciación Acompañado';
+      resultDesc.innerHTML = 'Aprenderéis juntos las bases del Wingfoil en el agua plana del embalse, ya seáis pareja, amigos o familiares. Os equiparemos con material F-One específico para vuestro nivel. ¡La mejor experiencia para compartir!';
     } else {
-      resultTitle.innerHTML = '🔵 Curso Wingfoil Intermedio';
-      resultDesc.innerHTML = 'Recomendamos un curso mixto de 4 a 6 horas. Reforzaremos tus bases en el agua plana del embalse y te equiparemos rápidamente con material F-One específico para tu peso y habilidad para lograr tus primeros vuelos.';
+      resultTitle.innerHTML = '🟢 Curso de Iniciación';
+      resultDesc.innerHTML = 'Tu mejor opción es empezar desde los cimientos. Te enseñaremos rumbos de viento, estabilidad y manejo del ala Wing en el agua plana del embalse. ¡Seguridad y diversión garantizadas!';
     }
 
     resultBox.scrollIntoView({ behavior: 'smooth' });
@@ -676,7 +677,7 @@ function initWizard() {
       
       // Restart at step 1
       wizard.querySelector(`.wizard-step[data-step="1"]`).classList.add('active');
-      selections = { sportExp: '', windExp: '', objective: '' };
+      selections = { sportExp: '', windExp: '', objective: '', groupSize: '' };
     });
   }
 }

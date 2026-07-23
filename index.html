@@ -211,9 +211,9 @@
             
             <!-- Step 1 -->
             <div class="wizard-step active" data-step="1" data-question="sportExp">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 1 de 3</h3>
+              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 1 de 4</h3>
               <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Tienes experiencia previa en deportes de tabla?</p>
-              <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Surf, Stand-Up Paddle, Skate, Snowboard, Wakeboard...)</p>
+              <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Surf, Skate, Snowboard, Wakeboard...)</p>
               <div class="wizard-options">
                 <div class="wizard-option-card" data-value="yes">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-teal);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
@@ -233,7 +233,7 @@
 
             <!-- Step 2 -->
             <div class="wizard-step" data-step="2" data-question="windExp">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 2 de 3</h3>
+              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 2 de 4</h3>
               <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Tienes experiencia en deportes de viento?</p>
               <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Kitesurf, Windsurf, Vela ligera, Parapente, tracción de cometas...)</p>
               <div class="wizard-options">
@@ -256,7 +256,7 @@
 
             <!-- Step 3 -->
             <div class="wizard-step" data-step="3" data-question="objective">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 3 de 3</h3>
+              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 3 de 4</h3>
               <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Cuál es tu principal objetivo en el curso?</p>
               <div class="wizard-options">
                 <div class="wizard-option-card" data-value="learn">
@@ -268,6 +268,28 @@
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-teal);"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                   <strong>Volar sobre el Foil</strong>
                   <span style="font-size: 0.85rem; color: var(--text-secondary);">Despegar rápido y planear sobre el agua.</span>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <button class="btn btn-secondary btn-prev">Atrás</button>
+                <button class="btn btn-primary btn-next" disabled>Siguiente</button>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="wizard-step" data-step="4" data-question="groupSize">
+              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 4 de 4</h3>
+              <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Vienes solo/a o acompañado/a?</p>
+              <div class="wizard-options">
+                <div class="wizard-option-card" data-value="solo">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-teal);"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <strong>Vengo solo/a</strong>
+                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Quiero un curso individual o con otros alumnos.</span>
+                </div>
+                <div class="wizard-option-card" data-value="pareja">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-teal);"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <strong>Vengo acompañado/a</strong>
+                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Con mi pareja, amigo/a o familiar — ¡aprendemos juntos!</span>
                 </div>
               </div>
               <div style="display: flex; justify-content: space-between;">
@@ -438,7 +460,7 @@
           <!-- Brand Partnerships -->
           <div style="max-width: 800px; margin: 0 auto 40px auto; text-align: center;">
             <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: var(--text-secondary);">Marcas Colaboradoras Oficiales</h3>
-            <div style="display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap;">
+            <div class="brand-partners-row" style="display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap;">
               <div style="font-family: var(--font-title); font-size: 1.8rem; font-weight: 800; color: var(--text-primary); letter-spacing: 2px;">
                 F-ONE<span style="color: var(--accent-teal);">.</span>
               </div>
