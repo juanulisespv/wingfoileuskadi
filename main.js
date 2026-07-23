@@ -500,8 +500,8 @@ function initSpotForecasts() {
       }
 
       el.innerHTML = `
-        <div style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color);">
-          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:10px;">
+        <div style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); max-width:100%; overflow:hidden;">
+          <div class="spot-weather-stats-grid">
             <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
             <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
             <div class="weather-item"><span class="weather-label">⚡ Rachas</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_gusts_10m)} kts</span></div>
@@ -509,7 +509,7 @@ function initSpotForecasts() {
           </div>
           <div class="weather-status ${bCls}" style="margin-bottom:10px; font-size:0.82rem;">${icon} ${bText}</div>
           <p style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-light); margin-bottom:6px;">Previsión 5 días</p>
-          <div class="forecast-strip" style="display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto;">${forecastHTML}</div>
+          <div class="forecast-strip" style="display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto; max-width:100%;">${forecastHTML}</div>
           <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;">Fuente: Open-Meteo · Datos en tiempo real</p>
         </div>`;
 
