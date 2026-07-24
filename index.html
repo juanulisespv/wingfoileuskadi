@@ -433,44 +433,41 @@
 
           <div class="spots-section">
             <!-- Google Maps iframes — one per spot, toggled by JS -->
-            <div class="spots-map-wrapper"
-              style="overflow:hidden; border-radius:var(--radius-lg); box-shadow:var(--card-shadow); position:relative;">
+            <div class="spots-map-wrapper">
+              <div class="spots-map-inner">
+                <!-- Garaio map (default visible) -->
+                <iframe id="map-garaio" class="spot-map-frame active"
+                  src="https://maps.google.com/maps?q=42.906222,-2.544861&z=15&output=embed" width="100%" height="100%"
+                  style="border:0; min-height:320px; display:block;" allowfullscreen=""
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Spot Garaio – Wingfoil Euskadi">
+                </iframe>
 
-              <!-- Garaio map (default visible) -->
-              <iframe id="map-garaio" class="spot-map-frame active"
-                src="https://maps.google.com/maps?q=42.906222,-2.544861&z=15&output=embed" width="100%" height="100%"
-                style="border:0; min-height:320px; display:block; position:absolute; top:0; left:0;" allowfullscreen=""
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Spot Garaio – Wingfoil Euskadi">
-              </iframe>
+                <!-- Club Náutico map -->
+                <iframe id="map-nautico" class="spot-map-frame"
+                  src="https://maps.google.com/maps?q=42.941174,-2.602010&z=15&output=embed" width="100%" height="100%"
+                  style="border:0; min-height:320px; display:none;" allowfullscreen=""
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  title="Club Náutico Vitoria – Wingfoil Euskadi">
+                </iframe>
 
-              <!-- Club Náutico map -->
-              <iframe id="map-nautico" class="spot-map-frame"
-                src="https://maps.google.com/maps?q=42.941174,-2.602010&z=15&output=embed" width="100%" height="100%"
-                style="border:0; min-height:320px; display:none; position:absolute; top:0; left:0;" allowfullscreen=""
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                title="Club Náutico Vitoria – Wingfoil Euskadi">
-              </iframe>
+                <!-- Landa map -->
+                <iframe id="map-landa" class="spot-map-frame"
+                  src="https://maps.google.com/maps?q=42.950869,-2.588104&z=15&output=embed" width="100%" height="100%"
+                  style="border:0; min-height:320px; display:none;" allowfullscreen=""
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Spot Landa – Wingfoil Euskadi">
+                </iframe>
 
-              <!-- Landa map -->
-              <iframe id="map-landa" class="spot-map-frame"
-                src="https://maps.google.com/maps?q=42.950869,-2.588104&z=15&output=embed" width="100%" height="100%"
-                style="border:0; min-height:320px; display:none; position:absolute; top:0; left:0;" allowfullscreen=""
-                loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Spot Landa – Wingfoil Euskadi">
-              </iframe>
-
-              <!-- Spacer to keep wrapper height -->
-              <div style="min-height:320px; visibility:hidden;" aria-hidden="true"></div>
-
-              <!-- Custom Zoom Controls -->
-              <div id="map-zoom-controls"
-                style="position:absolute; top:12px; right:12px; z-index:10; display:flex; flex-direction:column; gap:4px;">
-                <button id="map-zoom-in" title="Acercar" aria-label="Acercar mapa"
-                  style="width:36px; height:36px; border-radius:8px; border:none; background:rgba(255,255,255,0.95); color:#333; font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition:background 0.15s;">+</button>
-                <div id="map-zoom-label"
-                  style="text-align:center; font-size:0.7rem; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.7); line-height:1.8;">
-                  15</div>
-                <button id="map-zoom-out" title="Alejar" aria-label="Alejar mapa"
-                  style="width:36px; height:36px; border-radius:8px; border:none; background:rgba(255,255,255,0.95); color:#333; font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition:background 0.15s;">−</button>
+                <!-- Custom Zoom Controls -->
+                <div id="map-zoom-controls"
+                  style="position:absolute; top:12px; right:12px; z-index:10; display:flex; flex-direction:column; gap:4px;">
+                  <button id="map-zoom-in" title="Acercar" aria-label="Acercar mapa"
+                    style="width:36px; height:36px; border-radius:8px; border:none; background:rgba(255,255,255,0.95); color:#333; font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition:background 0.15s;">+</button>
+                  <div id="map-zoom-label"
+                    style="text-align:center; font-size:0.7rem; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.7); line-height:1.8;">
+                    15</div>
+                  <button id="map-zoom-out" title="Alejar" aria-label="Alejar mapa"
+                    style="width:36px; height:36px; border-radius:8px; border:none; background:rgba(255,255,255,0.95); color:#333; font-size:1.3rem; font-weight:700; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,0.2); display:flex; align-items:center; justify-content:center; transition:background 0.15s;">−</button>
+                </div>
               </div>
             </div>
 
