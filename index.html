@@ -240,167 +240,172 @@
           <!-- Wizard Recommendation Sub-Section (Ocultado temporalmente) -->
           <div style="display: none;">
             <div class="section-header" style="margin-top: 20px;">
-            <span class="badge">¿No estás seguro de cuál elegir?</span>
-            <h2 class="section-title">Recomendador de Cursos Interactivo</h2>
-            <p>Responde a estas breves preguntas y nuestro algoritmo evaluará tu experiencia previa para recomendarte el
-              curso de Wingfoil idóneo.</p>
+              <span class="badge">¿No estás seguro de cuál elegir?</span>
+              <h2 class="section-title">Recomendador de Cursos Interactivo</h2>
+              <p>Responde a estas breves preguntas y nuestro algoritmo evaluará tu experiencia previa para recomendarte
+                el
+                curso de Wingfoil idóneo.</p>
+            </div>
+
+            <div class="wizard-box" id="course-wizard">
+
+              <!-- Step 1 -->
+              <div class="wizard-step active" data-step="1" data-question="sportExp">
+                <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 1 de 4</h3>
+                <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Tienes
+                  experiencia previa en deportes de tabla?</p>
+                <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Surf, Skate, Snowboard,
+                  Wakeboard...)</p>
+                <div class="wizard-options">
+                  <div class="wizard-option-card" data-value="yes">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--accent-teal);">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <strong>Sí, tengo experiencia</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Tengo buen equilibrio en
+                      tablas.</span>
+                  </div>
+                  <div class="wizard-option-card" data-value="no">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--text-light);">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <strong>No, empiezo de cero</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Sería mi primera vez en una
+                      tabla.</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end;">
+                  <button class="btn btn-primary btn-next" disabled>Siguiente</button>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="wizard-step" data-step="2" data-question="windExp">
+                <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 2 de 4</h3>
+                <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Tienes
+                  experiencia en deportes de viento?</p>
+                <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Kitesurf, Windsurf, Vela
+                  ligera, Parapente, tracción de cometas...)</p>
+                <div class="wizard-options">
+                  <div class="wizard-option-card" data-value="yes">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--accent-teal);">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <strong>Sí, entiendo el viento</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Conozco rumbos, ceñidas y ventanas
+                      de
+                      viento.</span>
+                  </div>
+                  <div class="wizard-option-card" data-value="no">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--text-light);">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <strong>No, es todo nuevo</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">No tengo noción de rumbos de
+                      viento.</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <button class="btn btn-secondary btn-prev">Atrás</button>
+                  <button class="btn btn-primary btn-next" disabled>Siguiente</button>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="wizard-step" data-step="3" data-question="objective">
+                <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 3 de 4</h3>
+                <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Cuál
+                  es
+                  tu principal objetivo en el curso?</p>
+                <div class="wizard-options">
+                  <div class="wizard-option-card" data-value="learn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--accent-teal);">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    <strong>Aprender las bases</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Tener seguridad básica, ir y volver
+                      a
+                      tierra.</span>
+                  </div>
+                  <div class="wizard-option-card" data-value="foil">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--accent-teal);">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <strong>Volar sobre el Foil</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Despegar rápido y planear sobre el
+                      agua.</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <button class="btn btn-secondary btn-prev">Atrás</button>
+                  <button class="btn btn-primary btn-next" disabled>Siguiente</button>
+                </div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="wizard-step" data-step="4" data-question="groupSize">
+                <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 4 de 4</h3>
+                <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Vienes
+                  solo/a o acompañado/a?</p>
+                <div class="wizard-options">
+                  <div class="wizard-option-card" data-value="solo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--accent-teal);">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <strong>Vengo solo/a</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Quiero un curso individual o con
+                      otros
+                      alumnos.</span>
+                  </div>
+                  <div class="wizard-option-card" data-value="pareja">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      style="color: var(--accent-teal);">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <strong>Vengo acompañado/a</strong>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary);">Con mi pareja, amigo/a o familiar —
+                      ¡aprendemos juntos!</span>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <button class="btn btn-secondary btn-prev">Atrás</button>
+                  <button class="btn btn-primary btn-next" disabled>Ver Resultado</button>
+                </div>
+              </div>
+
+              <!-- Result Box -->
+              <div class="wizard-result-box" id="wizard-result">
+                <h3 style="margin-bottom: 12px; font-size: 1.3rem;">Curso Recomendado:</h3>
+                <h4 id="result-course-title" style="font-size: 1.4rem; color: var(--accent-teal); margin-bottom: 8px;">
+                  Calculando...</h4>
+                <p id="result-course-desc" style="font-size: 0.95rem; margin-bottom: 20px;">Tu curso idóneo se cargará
+                  aquí.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                  <a href="#contacto" class="btn btn-primary">Reservar Plaza</a>
+                  <button class="btn btn-secondary" id="btn-reset-wizard">Volver a Empezar</button>
+                </div>
+
+              </div>
+            </div>
           </div>
-
-          <div class="wizard-box" id="course-wizard">
-
-            <!-- Step 1 -->
-            <div class="wizard-step active" data-step="1" data-question="sportExp">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 1 de 4</h3>
-              <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Tienes
-                experiencia previa en deportes de tabla?</p>
-              <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Surf, Skate, Snowboard,
-                Wakeboard...)</p>
-              <div class="wizard-options">
-                <div class="wizard-option-card" data-value="yes">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--accent-teal);">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <strong>Sí, tengo experiencia</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Tengo buen equilibrio en
-                    tablas.</span>
-                </div>
-                <div class="wizard-option-card" data-value="no">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--text-light);">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="15" y1="9" x2="9" y2="15"></line>
-                    <line x1="9" y1="9" x2="15" y2="15"></line>
-                  </svg>
-                  <strong>No, empiezo de cero</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Sería mi primera vez en una
-                    tabla.</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: flex-end;">
-                <button class="btn btn-primary btn-next" disabled>Siguiente</button>
-              </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="wizard-step" data-step="2" data-question="windExp">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 2 de 4</h3>
-              <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Tienes
-                experiencia en deportes de viento?</p>
-              <p style="text-align: center; font-size: 0.9rem; color: var(--text-light);">(Kitesurf, Windsurf, Vela
-                ligera, Parapente, tracción de cometas...)</p>
-              <div class="wizard-options">
-                <div class="wizard-option-card" data-value="yes">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--accent-teal);">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <strong>Sí, entiendo el viento</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Conozco rumbos, ceñidas y ventanas de
-                    viento.</span>
-                </div>
-                <div class="wizard-option-card" data-value="no">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--text-light);">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="15" y1="9" x2="9" y2="15"></line>
-                    <line x1="9" y1="9" x2="15" y2="15"></line>
-                  </svg>
-                  <strong>No, es todo nuevo</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">No tengo noción de rumbos de
-                    viento.</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: space-between;">
-                <button class="btn btn-secondary btn-prev">Atrás</button>
-                <button class="btn btn-primary btn-next" disabled>Siguiente</button>
-              </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="wizard-step" data-step="3" data-question="objective">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 3 de 4</h3>
-              <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Cuál es
-                tu principal objetivo en el curso?</p>
-              <div class="wizard-options">
-                <div class="wizard-option-card" data-value="learn">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--accent-teal);">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                  </svg>
-                  <strong>Aprender las bases</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Tener seguridad básica, ir y volver a
-                    tierra.</span>
-                </div>
-                <div class="wizard-option-card" data-value="foil">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--accent-teal);">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                  <strong>Volar sobre el Foil</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Despegar rápido y planear sobre el
-                    agua.</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: space-between;">
-                <button class="btn btn-secondary btn-prev">Atrás</button>
-                <button class="btn btn-primary btn-next" disabled>Siguiente</button>
-              </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="wizard-step" data-step="4" data-question="groupSize">
-              <h3 style="text-align: center; margin-bottom: 8px;">Pregunta 4 de 4</h3>
-              <p style="text-align: center; font-weight: 600; font-size: 1.15rem; color: var(--text-primary);">¿Vienes
-                solo/a o acompañado/a?</p>
-              <div class="wizard-options">
-                <div class="wizard-option-card" data-value="solo">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--accent-teal);">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                  <strong>Vengo solo/a</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Quiero un curso individual o con otros
-                    alumnos.</span>
-                </div>
-                <div class="wizard-option-card" data-value="pareja">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="color: var(--accent-teal);">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                  </svg>
-                  <strong>Vengo acompañado/a</strong>
-                  <span style="font-size: 0.85rem; color: var(--text-secondary);">Con mi pareja, amigo/a o familiar —
-                    ¡aprendemos juntos!</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: space-between;">
-                <button class="btn btn-secondary btn-prev">Atrás</button>
-                <button class="btn btn-primary btn-next" disabled>Ver Resultado</button>
-              </div>
-            </div>
-
-            <!-- Result Box -->
-            <div class="wizard-result-box" id="wizard-result">
-              <h3 style="margin-bottom: 12px; font-size: 1.3rem;">Curso Recomendado:</h3>
-              <h4 id="result-course-title" style="font-size: 1.4rem; color: var(--accent-teal); margin-bottom: 8px;">
-                Calculando...</h4>
-              <p id="result-course-desc" style="font-size: 0.95rem; margin-bottom: 20px;">Tu curso idóneo se cargará
-                aquí.</p>
-              <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                <a href="#contacto" class="btn btn-primary">Reservar Plaza</a>
-                <button class="btn btn-secondary" id="btn-reset-wizard">Volver a Empezar</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
       </section>
 
       <!-- Section 3: Spots de Navegación (#spots) -->
@@ -541,8 +546,7 @@
                 <p>Junto con el Club Náutico, Landa es otra de las zonas del embalse donde se imparten cursos con
                   vientos del <strong>Norte, Noroeste, Sur y Sureste</strong>. Los vientos del <strong>Sur y
                     Sureste</strong> son especialmente comunes en Septiembre y Octubre, con intensidades que rondan los
-                  14-20 kts y pueden alcanzar los 40 kts en los días más fuertes. Es uno de los pocos spots de Euskadi
-                  donde se puede navegar con vientos del Sur.</p>
+                  14-20 kts y pueden alcanzar los 40 kts en los días más fuertes.</p>
 
                 <!-- Mini forecast widget for Landa -->
                 <div class="spot-forecast" id="forecast-landa" data-lat="42.950869" data-lon="-2.588104"></div>
@@ -595,134 +599,135 @@
           <!-- Catalog Filters and Grid (Ocultado temporalmente) -->
           <div style="display: none;">
             <div class="catalog-filters">
-            <button class="filter-btn active" data-filter="all">Todos los Equipos</button>
-            <button class="filter-btn" data-filter="fone">Material Técnico (F-One)</button>
-            <button class="filter-btn" data-filter="manera">Accesorios y Neoprenos (Manera)</button>
+              <button class="filter-btn active" data-filter="all">Todos los Equipos</button>
+              <button class="filter-btn" data-filter="fone">Material Técnico (F-One)</button>
+              <button class="filter-btn" data-filter="manera">Accesorios y Neoprenos (Manera)</button>
+            </div>
+
+            <div class="grid-cards">
+              <!-- Product 1: Strike Wing -->
+              <div class="card product-card" data-category="fone"
+                style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="position: relative; overflow: hidden; height: 210px;">
+                  <span class="product-brand-badge" style="z-index: 2;">F-One</span>
+                  <img src="img/chico-ala.png" alt="F-One Strike Wing" class="product-image-real">
+                </div>
+                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                  <span class="product-tag">Alas / Wings</span>
+                  <h3 class="card-title" style="margin-top: 8px;">Strike V4 Wing</h3>
+                  <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">El ala definitiva de wingfoil.
+                    Control de flujo aerodinámico, ligereza y empuje estable.</p>
+                  <div class="product-meta" style="margin-top: auto;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                    <button class="btn btn-secondary btn-view-details" data-item="fone-strike"
+                      style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 2: Rocket Wing Board -->
+              <div class="card product-card" data-category="fone"
+                style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="position: relative; overflow: hidden; height: 210px;">
+                  <span class="product-brand-badge" style="z-index: 2;">F-One</span>
+                  <img src="img/chica-tierra.png" alt="F-One Rocket Wing Board" class="product-image-real">
+                </div>
+                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                  <span class="product-tag">Tablas / Boards</span>
+                  <h3 class="card-title" style="margin-top: 8px;">Rocket Wing ASC</h3>
+                  <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Tabla rígida e indestructible
+                    ideal
+                    para escuelas y riders en progresión.</p>
+                  <div class="product-meta" style="margin-top: auto;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                    <button class="btn btn-secondary btn-view-details" data-item="fone-rocket"
+                      style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 3: Gravity Hydrofoil Set -->
+              <div class="card product-card" data-category="fone"
+                style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="position: relative; overflow: hidden; height: 210px;">
+                  <span class="product-brand-badge" style="z-index: 2;">F-One</span>
+                  <img src="img/chico15.png" alt="F-One Gravity Hydrofoil Set" class="product-image-real">
+                </div>
+                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                  <span class="product-tag">Foil / Mástit & Alas</span>
+                  <h3 class="card-title" style="margin-top: 8px;">Gravity FCT Hydrofoil</h3>
+                  <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Systema de foil intuitivo y de
+                    despegue progresivo a baja velocidad.</p>
+                  <div class="product-meta" style="margin-top: auto;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                    <button class="btn btn-secondary btn-view-details" data-item="fone-gravity"
+                      style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 4: Manera Seafarer Wetsuit -->
+              <div class="card product-card" data-category="manera"
+                style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="position: relative; overflow: hidden; height: 210px;">
+                  <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
+                  <img src="img/chica_escuela.png" alt="Manera Seafarer Neopreno" class="product-image-real">
+                </div>
+                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                  <span class="product-tag">Neoprenos / Wetsuits</span>
+                  <h3 class="card-title" style="margin-top: 8px;">Seafarer 4/3mm Chest-Zip</h3>
+                  <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Aislamiento térmico superior
+                    diseñado en 3D para máxima libertad de movimiento.</p>
+                  <div class="product-meta" style="margin-top: auto;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                    <button class="btn btn-secondary btn-view-details" data-item="manera-seafarer"
+                      style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 5: Manera Impact Vest -->
+              <div class="card product-card" data-category="manera"
+                style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="position: relative; overflow: hidden; height: 210px;">
+                  <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
+                  <img src="img/pareja_2.png" alt="Manera Chaleco de Impacto" class="product-image-real">
+                </div>
+                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                  <span class="product-tag">Chalecos & Seguridad</span>
+                  <h3 class="card-title" style="margin-top: 8px;">X10D Impact Vest</h3>
+                  <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Protección contra impactos con
+                    acolchado de espuma Shot Foam y gran flotabilidad.</p>
+                  <div class="product-meta" style="margin-top: auto;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                    <button class="btn btn-secondary btn-view-details" data-item="manera-impact"
+                      style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 6: Manera Leashes & Accessories -->
+              <div class="card product-card" data-category="manera"
+                style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="position: relative; overflow: hidden; height: 210px;">
+                  <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
+                  <img src="img/chica_301.png" alt="Manera Leash de Muñeca y Cintura" class="product-image-real">
+                </div>
+                <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
+                  <span class="product-tag">Accesorios / Leashes</span>
+                  <h3 class="card-title" style="margin-top: 8px;">Coiled Wrist & Waist Leash</h3>
+                  <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Leashes en espiral de alta
+                    resistencia para muñeca (wing) y cintura (tabla).</p>
+                  <div class="product-meta" style="margin-top: auto;">
+                    <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
+                    <button class="btn btn-secondary btn-view-details" data-item="manera-leash"
+                      style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-
-          <div class="grid-cards">
-            <!-- Product 1: Strike Wing -->
-            <div class="card product-card" data-category="fone"
-              style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="position: relative; overflow: hidden; height: 210px;">
-                <span class="product-brand-badge" style="z-index: 2;">F-One</span>
-                <img src="img/chico-ala.png" alt="F-One Strike Wing" class="product-image-real">
-              </div>
-              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                <span class="product-tag">Alas / Wings</span>
-                <h3 class="card-title" style="margin-top: 8px;">Strike V4 Wing</h3>
-                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">El ala definitiva de wingfoil.
-                  Control de flujo aerodinámico, ligereza y empuje estable.</p>
-                <div class="product-meta" style="margin-top: auto;">
-                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                  <button class="btn btn-secondary btn-view-details" data-item="fone-strike"
-                    style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product 2: Rocket Wing Board -->
-            <div class="card product-card" data-category="fone"
-              style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="position: relative; overflow: hidden; height: 210px;">
-                <span class="product-brand-badge" style="z-index: 2;">F-One</span>
-                <img src="img/chica-tierra.png" alt="F-One Rocket Wing Board" class="product-image-real">
-              </div>
-              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                <span class="product-tag">Tablas / Boards</span>
-                <h3 class="card-title" style="margin-top: 8px;">Rocket Wing ASC</h3>
-                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Tabla rígida e indestructible ideal
-                  para escuelas y riders en progresión.</p>
-                <div class="product-meta" style="margin-top: auto;">
-                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                  <button class="btn btn-secondary btn-view-details" data-item="fone-rocket"
-                    style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product 3: Gravity Hydrofoil Set -->
-            <div class="card product-card" data-category="fone"
-              style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="position: relative; overflow: hidden; height: 210px;">
-                <span class="product-brand-badge" style="z-index: 2;">F-One</span>
-                <img src="img/chico15.png" alt="F-One Gravity Hydrofoil Set" class="product-image-real">
-              </div>
-              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                <span class="product-tag">Foil / Mástit & Alas</span>
-                <h3 class="card-title" style="margin-top: 8px;">Gravity FCT Hydrofoil</h3>
-                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Systema de foil intuitivo y de
-                  despegue progresivo a baja velocidad.</p>
-                <div class="product-meta" style="margin-top: auto;">
-                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                  <button class="btn btn-secondary btn-view-details" data-item="fone-gravity"
-                    style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product 4: Manera Seafarer Wetsuit -->
-            <div class="card product-card" data-category="manera"
-              style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="position: relative; overflow: hidden; height: 210px;">
-                <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
-                <img src="img/chica_escuela.png" alt="Manera Seafarer Neopreno" class="product-image-real">
-              </div>
-              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                <span class="product-tag">Neoprenos / Wetsuits</span>
-                <h3 class="card-title" style="margin-top: 8px;">Seafarer 4/3mm Chest-Zip</h3>
-                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Aislamiento térmico superior
-                  diseñado en 3D para máxima libertad de movimiento.</p>
-                <div class="product-meta" style="margin-top: auto;">
-                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                  <button class="btn btn-secondary btn-view-details" data-item="manera-seafarer"
-                    style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product 5: Manera Impact Vest -->
-            <div class="card product-card" data-category="manera"
-              style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="position: relative; overflow: hidden; height: 210px;">
-                <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
-                <img src="img/pareja_2.png" alt="Manera Chaleco de Impacto" class="product-image-real">
-              </div>
-              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                <span class="product-tag">Chalecos & Seguridad</span>
-                <h3 class="card-title" style="margin-top: 8px;">X10D Impact Vest</h3>
-                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Protección contra impactos con
-                  acolchado de espuma Shot Foam y gran flotabilidad.</p>
-                <div class="product-meta" style="margin-top: auto;">
-                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                  <button class="btn btn-secondary btn-view-details" data-item="manera-impact"
-                    style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Product 6: Manera Leashes & Accessories -->
-            <div class="card product-card" data-category="manera"
-              style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-              <div style="position: relative; overflow: hidden; height: 210px;">
-                <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
-                <img src="img/chica_301.png" alt="Manera Leash de Muñeca y Cintura" class="product-image-real">
-              </div>
-              <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
-                <span class="product-tag">Accesorios / Leashes</span>
-                <h3 class="card-title" style="margin-top: 8px;">Coiled Wrist & Waist Leash</h3>
-                <p class="card-text" style="font-size: 0.9rem; margin-bottom: 20px;">Leashes en espiral de alta
-                  resistencia para muñeca (wing) y cintura (tabla).</p>
-                <div class="product-meta" style="margin-top: auto;">
-                  <span style="font-weight: 700; color: var(--text-primary);">Consúltanos</span>
-                  <button class="btn btn-secondary btn-view-details" data-item="manera-leash"
-                    style="padding: 6px 14px; font-size: 0.85rem;">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
       </section>
 
       <!-- Section 5: Photo Gallery Showcase (#galeria) -->
