@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# LLM & AI Agents documentation
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+Sitemap: https://juanulisespv.github.io/wingfoileuskadi/sitemap.xml

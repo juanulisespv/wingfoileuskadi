@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContact();
   initCourseModal();
   initBackgroundVideos();
+  initCookieConsent();
 });
 
 // ==========================================
@@ -69,69 +70,67 @@ function initOnePageScroll() {
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
-  // 1. Scroll Progress Bar & Back to Top visibility
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (docHeight > 0) ? (scrollTop / docHeight) * 100 : 0;
-    
-    if (progressBar) {
-      progressBar.style.width = `${progress}%`;
-    }
-
-    if (backToTopBtn) {
-      if (scrollTop > 400) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
-      }
-    }
-  });
-
-  // 2. Back to Top Click
+  // 1. Back to Top Click
   if (backToTopBtn) {
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // 3. Viewport-based ScrollSpy: Highlight Nav link according to visible section
-  function updateScrollSpy() {
-    const headerOffset = 120; // Height of fixed header + buffer
-    let currentSectionId = '';
+  // 2. IntersectionObserver-based ScrollSpy (0 forced reflows)
+  if ('IntersectionObserver' in window && sections.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-15% 0px -65% 0px',
+      threshold: 0
+    };
 
-    sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      // Section is active if top is above reading line and bottom is below reading line
-      if (rect.top <= headerOffset && rect.bottom > headerOffset) {
-        currentSectionId = sec.getAttribute('id');
-      }
-    });
-
-    // Top of page edge case
-    if (window.scrollY < 120) {
-      currentSectionId = 'inicio';
-    }
-
-    // Bottom of page edge case (Contacto / Footer)
-    if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 80)) {
-      currentSectionId = 'contacto';
-    }
-
-    if (currentSectionId) {
-      navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === `#${currentSectionId}`) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          if (id) {
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
         }
       });
-    }
+    }, observerOptions);
+
+    sections.forEach(sec => observer.observe(sec));
   }
 
-  window.addEventListener('scroll', updateScrollSpy, { passive: true });
-  updateScrollSpy(); // Initial execution
+  // 3. RAF-throttled scroll handler for Progress Bar & Back to Top button
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (docHeight > 0) ? (scrollTop / docHeight) * 100 : 0;
+        
+        if (progressBar) {
+          progressBar.style.width = `${progress}%`;
+        }
+
+        if (backToTopBtn) {
+          if (scrollTop > 400) {
+            backToTopBtn.classList.add('visible');
+          } else {
+            backToTopBtn.classList.remove('visible');
+          }
+        }
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
 
   // Instant active feedback on nav link click
   navLinks.forEach(link => {
@@ -965,6 +964,111 @@ function initBackgroundVideos() {
       });
     }
   });
+}
+
+// ==========================================
+// GDPR COOKIE BANNER & GOOGLE ANALYTICS 4
+// ==========================================
+function initCookieConsent() {
+  const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Reemplazar con tu ID real de Google Analytics 4
+  const banner = document.getElementById('cookie-banner');
+  const btnAccept = document.getElementById('btn-accept-cookies');
+  const btnReject = document.getElementById('btn-reject-cookies');
+  const linkPolicy = document.getElementById('link-cookie-policy');
+  const openPolicyFooter = document.getElementById('open-cookie-policy');
+  const cookieModal = document.getElementById('cookie-modal');
+  const cookieModalClose = document.getElementById('cookie-modal-close');
+  const btnResetCookies = document.getElementById('btn-reset-cookies');
+
+  const consent = localStorage.getItem('cookie_consent');
+
+  if (consent === 'accepted') {
+    loadGoogleAnalytics(GA_MEASUREMENT_ID);
+  } else if (!consent) {
+    setTimeout(() => {
+      if (banner) banner.classList.add('visible');
+    }, 1200);
+  }
+
+  if (btnAccept) {
+    btnAccept.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'accepted');
+      if (banner) banner.classList.remove('visible');
+      loadGoogleAnalytics(GA_MEASUREMENT_ID);
+      if (typeof showToast === 'function') {
+        showToast('🍪 Preferencia de cookies guardada (Aceptadas)', 'success');
+      }
+    });
+  }
+
+  if (btnReject) {
+    btnReject.addEventListener('click', () => {
+      localStorage.setItem('cookie_consent', 'rejected');
+      if (banner) banner.classList.remove('visible');
+      if (typeof showToast === 'function') {
+        showToast('🍪 Preferencia de cookies guardada (Rechazadas)', 'info');
+      }
+    });
+  }
+
+  function openModal() {
+    if (cookieModal) cookieModal.classList.add('active');
+  }
+
+  function closeModal() {
+    if (cookieModal) cookieModal.classList.remove('active');
+  }
+
+  if (linkPolicy) {
+    linkPolicy.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+
+  if (openPolicyFooter) {
+    openPolicyFooter.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+
+  if (cookieModalClose) {
+    cookieModalClose.addEventListener('click', closeModal);
+  }
+
+  if (cookieModal) {
+    cookieModal.addEventListener('click', (e) => {
+      if (e.target === cookieModal) closeModal();
+    });
+  }
+
+  if (btnResetCookies) {
+    btnResetCookies.addEventListener('click', () => {
+      localStorage.removeItem('cookie_consent');
+      closeModal();
+      if (banner) banner.classList.add('visible');
+      if (typeof showToast === 'function') {
+        showToast('🍪 Puedes seleccionar de nuevo tu preferencia.', 'info');
+      }
+    });
+  }
+}
+
+function loadGoogleAnalytics(gaId) {
+  if (!gaId || gaId === 'G-XXXXXXXXXX' || window.gaLoaded) return;
+  window.gaLoaded = true;
+
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+  document.head.appendChild(script);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', gaId, { anonymize_ip: true });
 }
 
 

@@ -10,6 +10,9 @@
   <meta name="keywords"
     content="escuela wingfoil, wing foil euskadi, aprender wingfoil vitoria, ullibarri gamboa, garaio, wingfoil alava, f-one wingfoil">
 
+  <!-- Google Search Console Verification Meta Tag (Reemplazar CONTENT con tu código de Search Console) -->
+  <meta name="google-site-verification" content="REEMPLAZAR_CON_CODIGO_GOOGLE_SEARCH_CONSOLE">
+
   <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://juanulisespv.github.io/wingfoileuskadi/">
@@ -28,9 +31,74 @@
     content="Aprende Wingfoil en el pantano de Ullibarri-Gamboa, Álava. Cursos individuales y por parejas.">
   <meta name="twitter:image" content="https://juanulisespv.github.io/wingfoileuskadi/img/chico-navegando-1.png">
 
+  <!-- Preconnect Hints for Performance & Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.open-meteo.com">
+
   <!-- CSS Stylesheets -->
   <link rel="icon" type="image/png" href="img/logos/logo_redondo.png">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD Structured Data for AI Agents & Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SportsActivityLocation",
+        "@id": "https://juanulisespv.github.io/wingfoileuskadi/#organization",
+        "name": "Wingfoil Euskadi",
+        "url": "https://juanulisespv.github.io/wingfoileuskadi/",
+        "logo": "https://juanulisespv.github.io/wingfoileuskadi/img/logo_wingfoileuskadi.webp",
+        "description": "Escuela oficial de Wingfoil en Álava (País Vasco), ubicada en el embalse de Ullibarri-Gamboa (Garaio, Landa, Náutico).",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ullibarri-Gamboa",
+          "addressRegion": "Álava",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "42.9167",
+          "longitude": "-2.5500"
+        },
+        "priceRange": "€€",
+        "telephone": "+34669270988"
+      },
+      {
+        "@type": "Course",
+        "name": "Curso Individual Wingfoil",
+        "description": "Clase 100% personalizada con instructor dedicado e intercomunicador por radio.",
+        "provider": {
+          "@type": "SportsActivityLocation",
+          "name": "Wingfoil Euskadi"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "210",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "Curso por Parejas Wingfoil",
+        "description": "Ideal para aprender junto a un amigo o pareja con dos equipos independientes.",
+        "provider": {
+          "@type": "SportsActivityLocation",
+          "name": "Wingfoil Euskadi"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "300",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/InStock"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -42,7 +110,7 @@
       <div class="scroll-progress-bar" id="scroll-progress"></div>
       <div class="container header-container">
         <a href="#inicio" class="logo-link">
-          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi Logo" class="logo-img">
+          <img src="img/logo_wingfoileuskadi.webp" alt="Wingfoil Euskadi Logo" class="logo-img" width="360" height="92" fetchpriority="high">
         </a>
 
         <!-- Mobile hamburger toggle button -->
@@ -84,7 +152,7 @@
             </div>
             <div class="hero-media">
               <div class="hero-image-container">
-                <video autoplay loop muted playsinline preload="auto" poster="img/video/chica-espaldas.jpg"
+                <video autoplay loop muted playsinline preload="auto" poster="img/video/chica-espaldas.webp"
                   class="hero-image">
                   <source src="img/chica-loop.mp4" type="video/mp4">
                   Tu navegador no soporta el formato de vídeo HTML5.
@@ -114,7 +182,7 @@
               </div>
 
               <div style="position: relative; overflow: hidden; border-radius: var(--radius-lg);">
-                <video autoplay loop muted playsinline preload="auto" poster="img/video/chica-pantano.jpg"
+                <video autoplay loop muted playsinline preload="auto" poster="img/video/chica-pantano.webp"
                   class="section-side-image">
                   <source src="img/video/chica-pantano.mp4" type="video/mp4">
                   Tu navegador no soporta el formato de vídeo HTML5.
@@ -146,7 +214,7 @@
                 style="position: absolute; top: 12px; right: 12px; background: var(--accent-teal); color: white; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; z-index: 3;">
                 Recomendado</div>
               <div class="course-card-image-wrapper">
-                <img src="img/chica_1.png" alt="Curso Individual Wingfoil" class="course-card-image">
+                <img src="img/chica_1.webp" alt="Curso Individual Wingfoil" class="course-card-image" width="658" height="438" loading="lazy">
               </div>
               <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                 <div class="card-icon"
@@ -159,11 +227,10 @@
                 <p class="card-text" style="font-weight: 500;">Donde el instructor está continuamente pendiente de ti
                   para que mejores lo antes posible.</p>
                 <ul style="margin: 16px 0 20px 20px; color: var(--text-secondary); font-size: 0.9rem;">
-                  <li style="margin-bottom: 6px;">Atención 100% exclusiva y personalizada.</li>
-                  <li style="margin-bottom: 6px;">Nociones de viento, rumbos navegables y seguridad.</li>
-                  <li style="margin-bottom: 6px;">Manejo del Wing en tierra y ceñida en agua.</li>
-                  <li style="margin-bottom: 6px;">Posición sobre tabla SUP y primeros bordos.</li>
-                  <li style="margin-bottom: 6px;">Evolución adaptada hacia tabla de Wing con Foil.</li>
+                  <li style="margin-bottom: 6px;">Atención 100% individualizada en agua plana.</li>
+                  <li style="margin-bottom: 6px;">Radio-casco para comunicación directa constante.</li>
+                  <li style="margin-bottom: 6px;">Manejo de ala, técnica de foil y navegación.</li>
+                  <li style="margin-bottom: 6px;">Todo el equipamiento F-One / Manera incluido.</li>
                 </ul>
                 <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
                   <button class="btn btn-primary btn-book-course" data-course="Individual (210€ - 3h)" data-price="210"
@@ -177,7 +244,7 @@
             <!-- Card 2: Curso por Parejas -->
             <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
               <div class="course-card-image-wrapper">
-                <img src="img/pareja_2.png" alt="Curso por Parejas Wingfoil" class="course-card-image">
+                <img src="img/pareja_2.webp" alt="Curso por Parejas Wingfoil" class="course-card-image" width="662" height="441" loading="lazy">
               </div>
               <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                 <div class="card-icon"
@@ -209,7 +276,7 @@
             <!-- Card 3: Curso de Perfeccionamiento -->
             <div class="card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
               <div class="course-card-image-wrapper">
-                <img src="img/chico-ala.png" alt="Curso de Perfeccionamiento Foil" class="course-card-image">
+                <img src="img/chico-ala.webp" alt="Curso de Perfeccionamiento Foil" class="course-card-image" width="674" height="368" loading="lazy">
               </div>
               <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                 <div class="card-icon"
@@ -610,7 +677,7 @@
                 style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="position: relative; overflow: hidden; height: 210px;">
                   <span class="product-brand-badge" style="z-index: 2;">F-One</span>
-                  <img src="img/chico-ala.png" alt="F-One Strike Wing" class="product-image-real">
+                  <img src="img/chico-ala.webp" alt="F-One Strike Wing" class="product-image-real" width="674" height="368" loading="lazy">
                 </div>
                 <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span class="product-tag">Alas / Wings</span>
@@ -630,7 +697,7 @@
                 style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="position: relative; overflow: hidden; height: 210px;">
                   <span class="product-brand-badge" style="z-index: 2;">F-One</span>
-                  <img src="img/chica-tierra.png" alt="F-One Rocket Wing Board" class="product-image-real">
+                  <img src="img/chica-tierra.webp" alt="F-One Rocket Wing Board" class="product-image-real" width="665" height="438" loading="lazy">
                 </div>
                 <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span class="product-tag">Tablas / Boards</span>
@@ -651,7 +718,7 @@
                 style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="position: relative; overflow: hidden; height: 210px;">
                   <span class="product-brand-badge" style="z-index: 2;">F-One</span>
-                  <img src="img/chico15.png" alt="F-One Gravity Hydrofoil Set" class="product-image-real">
+                  <img src="img/chico15.webp" alt="F-One Gravity Hydrofoil Set" class="product-image-real" width="665" height="438" loading="lazy">
                 </div>
                 <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span class="product-tag">Foil / Mástit & Alas</span>
@@ -671,7 +738,7 @@
                 style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="position: relative; overflow: hidden; height: 210px;">
                   <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
-                  <img src="img/chica_escuela.png" alt="Manera Seafarer Neopreno" class="product-image-real">
+                  <img src="img/chica_escuela.webp" alt="Manera Seafarer Neopreno" class="product-image-real" width="665" height="438" loading="lazy">
                 </div>
                 <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span class="product-tag">Neoprenos / Wetsuits</span>
@@ -691,7 +758,7 @@
                 style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="position: relative; overflow: hidden; height: 210px;">
                   <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
-                  <img src="img/pareja_2.png" alt="Manera Chaleco de Impacto" class="product-image-real">
+                  <img src="img/pareja_2.webp" alt="Manera Chaleco de Impacto" class="product-image-real" width="662" height="441" loading="lazy">
                 </div>
                 <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span class="product-tag">Chalecos & Seguridad</span>
@@ -711,7 +778,7 @@
                 style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
                 <div style="position: relative; overflow: hidden; height: 210px;">
                   <span class="product-brand-badge" style="background: var(--accent-teal); z-index: 2;">Manera</span>
-                  <img src="img/chica_301.png" alt="Manera Leash de Muñeca y Cintura" class="product-image-real">
+                  <img src="img/chica_301.webp" alt="Manera Leash de Muñeca y Cintura" class="product-image-real" width="665" height="499" loading="lazy">
                 </div>
                 <div style="padding: 20px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span class="product-tag">Accesorios / Leashes</span>
@@ -742,33 +809,33 @@
 
           <div class="gallery-grid">
             <div class="gallery-card">
-              <img src="img/chica_301.png" alt="Rider navegando en agua plana">
+              <img src="img/chica_301.webp" alt="Rider navegando en agua plana" width="665" height="499" loading="lazy">
               <div class="gallery-caption">
-                <h4>Vuelo Estable</h4>
+                <h3>Vuelo Estable</h3>
                 <p>Navegación fluida sobre agua plana</p>
               </div>
             </div>
 
             <div class="gallery-card">
-              <img src="img/chica-navegando-1.png" alt="Control de ala Wingfoil en el pantano">
+              <img src="img/chica-navegando-1.webp" alt="Control de ala Wingfoil en el pantano" width="665" height="999" loading="lazy">
               <div class="gallery-caption">
-                <h4>Manejo del Wing</h4>
+                <h3>Manejo del Wing</h3>
                 <p>Técnicas de control de ala y viento</p>
               </div>
             </div>
 
             <div class="gallery-card">
-              <img src="img/chica-rodillas.png" alt="Posición de rodillas antes de despegar">
+              <img src="img/chica-rodillas.webp" alt="Posición de rodillas antes de despegar" width="728" height="490" loading="lazy">
               <div class="gallery-caption">
-                <h4>Transición al Foil</h4>
+                <h3>Transición al Foil</h3>
                 <p>Equilibrio e inicio de planeo</p>
               </div>
             </div>
 
             <div class="gallery-card">
-              <img src="img/chico15.png" alt="Equipamiento en la orilla del pantano">
+              <img src="img/chico15.webp" alt="Equipamiento en la orilla del pantano" width="871" height="490" loading="lazy">
               <div class="gallery-caption">
-                <h4>Equipamiento Profesional</h4>
+                <h3>Equipamiento Profesional</h3>
                 <p>Tablas, alas y neoprenos F-One / Manera</p>
               </div>
             </div>
@@ -781,7 +848,7 @@
         <div class="container">
           <div class="section-header">
             <span class="badge">FAQ / Dudas</span>
-            <h1 class="section-title">Preguntas Frecuentes</h1>
+            <h2 class="section-title">Preguntas Frecuentes</h2>
             <p>¿Tienes dudas sobre cómo empezar en el Wingfoil? Aquí damos respuesta a las preguntas más habituales
               sobre seguridad, edad, viento y requisitos mínimos.</p>
           </div>
@@ -915,7 +982,7 @@
         <div class="container">
           <div class="section-header">
             <span class="badge">Contacto directo</span>
-            <h1 class="section-title">Escríbenos tu Consulta</h1>
+            <h2 class="section-title">Escríbenos tu Consulta</h2>
             <p>Rellena el siguiente formulario para consultar disponibilidad de fechas, tarifas de grupos o solicitar
               asesoramiento técnico para compra de material F-One o Manera.</p>
           </div>
@@ -924,7 +991,7 @@
 
             <!-- Left Column: Contact Form -->
             <div>
-              <h2 style="font-size: 1.6rem; margin-bottom: 24px; color: var(--accent-teal);">Formulario de Contacto</h2>
+              <h3 style="font-size: 1.6rem; margin-bottom: 24px; color: var(--accent-teal);">Formulario de Contacto</h3>
               <form id="contact-form" novalidate>
                 <div class="form-group">
                   <label for="form-name" class="form-label">Nombre Completo <span
@@ -1093,7 +1160,7 @@
     <footer class="footer">
       <div class="container">
         <a href="#inicio" class="footer-logo">
-          <img src="img/logo_wingfoileuskadi.png" alt="Wingfoil Euskadi" class="footer-logo-img">
+          <img src="img/logo_wingfoileuskadi.webp" alt="Wingfoil Euskadi" class="footer-logo-img" width="340" height="85" loading="lazy">
         </a>
         <p style="margin-bottom: 20px;">Aprende Wingfoil en el pantano de Ullibarri, Álava.</p>
         <div class="footer-socials">
@@ -1114,10 +1181,47 @@
             </svg>
           </a>
         </div>
-        <p style="font-size: 0.85rem; color: var(--text-light);">&copy; 2026 Wingfoil Euskadi. Todos los derechos
-          reservados.</p>
+        <p style="font-size: 0.85rem; color: var(--text-light);">&copy; 2026 Wingfoil Euskadi. Todos los derechos reservados.</p>
+        <p style="margin-top: 6px;">
+          <a href="#" id="open-cookie-policy" style="color: var(--text-light); text-decoration: underline; font-size: 0.8rem;">Política de Cookies y Privacidad</a>
+        </p>
       </div>
     </footer>
+
+    <!-- Discreet GDPR Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+      <div class="cookie-content">
+        <span class="cookie-icon">🍪</span>
+        <div class="cookie-text">
+          <strong>Uso de cookies:</strong> Utilizamos cookies analíticas anónimas para medir el tráfico y mejorar la experiencia. <a href="#" id="link-cookie-policy">Ver Política</a>.
+        </div>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn btn-sm btn-primary" id="btn-accept-cookies">Aceptar</button>
+        <button class="btn btn-sm btn-secondary" id="btn-reject-cookies">Rechazar</button>
+      </div>
+    </div>
+
+    <!-- Cookie & Privacy Policy Modal -->
+    <div class="product-modal-overlay" id="cookie-modal">
+      <div class="product-modal-card" style="max-width: 520px; padding: 28px;">
+        <button class="product-modal-close" id="cookie-modal-close" aria-label="Cerrar modal">&times;</button>
+        <h3 style="font-size: 1.3rem; color: var(--text-primary); margin-bottom: 12px;">Política de Cookies y Privacidad</h3>
+        <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; display: flex; flex-direction: column; gap: 12px; max-height: 60vh; overflow-y: auto; padding-right: 6px;">
+          <p>En <strong>Wingfoil Euskadi</strong> respetamos tu privacidad y cumplimos estrictamente con el RGPD y la LSSI-CE.</p>
+          <h4 style="color: var(--text-primary); font-size: 0.95rem;">1. ¿Qué tipo de cookies usamos?</h4>
+          <ul style="margin-left: 18px;">
+            <li><strong>Técnicas / Necesarias:</strong> Almacenan la preferencia de consentimiento (`cookie_consent`) para no volver a solicitar tu elección.</li>
+            <li><strong>Analíticas (Google Analytics 4):</strong> Miden de forma anónima el volumen de visitas y fuentes de tráfico. Se cargan <strong>únicamente si aceptas expresamente</strong>.</li>
+          </ul>
+          <h4 style="color: var(--text-primary); font-size: 0.95rem;">2. Titular del Sitio Web</h4>
+          <p><strong>Wingfoil Euskadi</strong> — Embalse de Ullibarri-Gamboa, Álava (País Vasco). Email: <em>wingfoileuskadi@gmail.com</em>.</p>
+          <h4 style="color: var(--text-primary); font-size: 0.95rem;">3. Gestionar tu consentimiento</h4>
+          <p>Puedes cambiar o revocar tu preferencia en cualquier momento:</p>
+          <button class="btn btn-secondary btn-sm" id="btn-reset-cookies" style="align-self: flex-start;">Revocar Consentimiento / Cambiar Ajustes</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/34669270988?text=Hola%2C%20quisiera%20consultar%20informaci%C3%B3n%20y%20disponibilidad%20para%20un%20curso%20de%20Wingfoil"
