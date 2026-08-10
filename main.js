@@ -570,7 +570,7 @@ function initSpotForecasts() {
       }
 
       el.innerHTML = `
-        <div class="spot-weather-card-content" style="margin-top:14px; padding:14px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); max-width:100%; overflow:hidden;">
+        <div class="spot-weather-card-content">
           <div class="spot-weather-stats-grid">
             <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
             <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
