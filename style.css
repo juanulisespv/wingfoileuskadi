@@ -654,150 +654,225 @@ p {
   margin-bottom: 10px;
 }
 
+/* Forecast 5-Day Title */
+.forecast-strip-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.forecast-click-hint {
+  font-weight: 500;
+  text-transform: none;
+  color: var(--accent-teal);
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
 .forecast-strip {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
+  gap: 8px;
 }
 
 .forecast-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  padding: 10px 4px;
-  border-radius: var(--radius-sm);
-  background-color: var(--bg-secondary);
+  justify-content: space-between;
+  gap: 4px;
+  padding: 12px 6px;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   text-align: center;
-  transition: var(--transition);
+  transition: all 0.2s ease;
+  position: relative;
 }
-
-.forecast-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--card-shadow-hover);
-}
-
-.forecast-card.f-good  { border-color: var(--accent-lime);    background-color: var(--accent-lime-light); }
-.forecast-card.f-ok    { border-color: #fcd34d; background-color: #fef9e7; }
-.forecast-card.f-bad   { border-color: #fca5a5; background-color: #fef2f2; }
-.forecast-card.f-strong{ border-color: #fb923c; background-color: #fff7ed; }
-
-.fc-day   { font-size: 0.7rem; font-weight: 700; color: var(--text-secondary); text-transform: capitalize; }
-.fc-arrow { font-size: 1.2rem; line-height: 1; }
-.fc-wind  { font-size: 0.85rem; font-weight: 700; color: var(--text-primary); }
-.fc-gust  { font-size: 0.65rem; color: var(--text-light); }
-.fc-temp  { font-size: 0.65rem; color: var(--text-secondary); }
-.fc-status{ font-size: 0.6rem; font-weight: 700; color: var(--accent-teal-hover); }
 
 .forecast-card.clickable {
   cursor: pointer;
   user-select: none;
-  position: relative;
 }
 
 .forecast-card.clickable:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  border-color: var(--accent-teal);
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.12);
 }
 
 .forecast-card.active-day {
   border-color: var(--accent-teal) !important;
-  box-shadow: 0 0 0 2px var(--accent-teal), 0 4px 12px rgba(15, 118, 110, 0.2);
-  transform: translateY(-2px);
+  background-color: rgba(15, 118, 110, 0.05) !important;
+  box-shadow: 0 0 0 2px var(--accent-teal);
 }
 
-.fc-hint {
-  font-size: 0.58rem;
-  color: var(--accent-teal);
+.fc-day {
+  font-size: 0.75rem;
   font-weight: 700;
-  margin-top: 2px;
-  background: rgba(15, 118, 110, 0.08);
-  padding: 1px 4px;
-  border-radius: 4px;
+  color: var(--text-primary);
+  text-transform: capitalize;
 }
 
-/* Hourly Forecast Breakdown Box */
+.fc-arrow {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.fc-wind {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.fc-gust {
+  font-size: 0.68rem;
+  color: var(--text-light);
+}
+
+.fc-temp {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+}
+
+.fc-status-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.fc-status-badge.f-good { background: rgba(34, 197, 94, 0.12); color: #15803d; }
+.fc-status-badge.f-ok { background: rgba(245, 158, 11, 0.12); color: #b45309; }
+.fc-status-badge.f-bad { background: rgba(239, 68, 68, 0.1); color: #b91c1c; }
+.fc-status-badge.f-strong { background: rgba(249, 115, 22, 0.12); color: #c2410c; }
+
+/* Hourly Breakdown Box - Clean Glassmorphic Card */
 .hourly-forecast-box {
-  margin-top: 12px;
-  padding: 12px;
-  background: var(--bg-card);
+  margin-top: 14px;
+  padding: 14px;
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  box-shadow: var(--card-shadow);
-  animation: fadeIn 0.25s ease-in-out;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.2s ease-out;
 }
 
 .hourly-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed var(--border-color);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.hourly-title {
-  font-size: 0.82rem;
-  font-weight: 600;
+.hourly-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
   color: var(--text-primary);
+}
+
+.hourly-title strong {
+  color: var(--accent-teal);
+  font-weight: 700;
 }
 
 .hourly-close-btn {
-  background: none;
-  border: none;
-  font-size: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
   line-height: 1;
-  color: var(--text-light);
+  color: var(--text-secondary);
   cursor: pointer;
-  padding: 2px 6px;
-  border-radius: 4px;
-  transition: var(--transition);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
 }
 
 .hourly-close-btn:hover {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+  background: var(--accent-teal);
+  color: #ffffff;
+  border-color: var(--accent-teal);
 }
 
 .hourly-strip {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   scrollbar-width: thin;
 }
 
+/* Individual Hourly Card */
 .hourly-card {
-  min-width: 60px;
+  min-width: 72px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 8px 4px;
+  gap: 4px;
+  padding: 10px 8px;
   border-radius: var(--radius-sm);
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-card);
   border: 1px solid var(--border-color);
   text-align: center;
-  font-size: 0.78rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
-.hourly-card.f-good   { border-color: var(--accent-lime);    background-color: var(--accent-lime-light); }
-.hourly-card.f-ok     { border-color: #fcd34d; background-color: #fef9e7; }
-.hourly-card.f-bad    { border-color: #fca5a5; background-color: #fef2f2; }
-.hourly-card.f-strong { border-color: #fb923c; background-color: #fff7ed; }
+.hc-time {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
 
-.hc-time { font-size: 0.72rem; font-weight: 700; color: var(--text-secondary); }
-.hc-arrow { font-size: 1.1rem; line-height: 1; }
-.hc-wind { font-size: 0.82rem; font-weight: 700; color: var(--text-primary); }
-.hc-gust { font-size: 0.65rem; color: var(--text-light); }
-.hc-temp { font-size: 0.65rem; color: var(--text-secondary); }
-.hc-status { font-size: 0.58rem; font-weight: 700; }
+.hc-arrow {
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--text-secondary);
+}
 
-.hourly-card.f-good .hc-status  { color: var(--accent-lime-hover); }
-.hourly-card.f-bad .hc-status   { color: #dc2626; }
-.hourly-card.f-strong .hc-status{ color: #ea580c; }
+.hc-wind {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.hc-wind small {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.hc-details {
+  font-size: 0.66rem;
+  color: var(--text-light);
+}
+
+.hc-pill {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  margin-top: 2px;
+}
+
+.hc-pill.f-good { background: rgba(34, 197, 94, 0.12); color: #15803d; }
+.hc-pill.f-ok { background: rgba(245, 158, 11, 0.12); color: #b45309; }
+.hc-pill.f-bad { background: rgba(239, 68, 68, 0.1); color: #b91c1c; }
+.hc-pill.f-strong { background: rgba(249, 115, 22, 0.12); color: #c2410c; }
 
 /* Updated timestamp */
 .weather-updated {

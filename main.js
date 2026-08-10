@@ -484,13 +484,12 @@ function initSpotForecasts() {
       const st = forecastStatus(w);
 
       hourlyCardsHTML += `
-        <div class="hourly-card ${st.cls}">
+        <div class="hourly-card">
           <span class="hc-time">${hourLabel}</span>
           <span class="hc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
-          <span class="hc-wind">${Math.round(w)} kts</span>
-          <span class="hc-gust">↑${Math.round(g)}</span>
-          <span class="hc-temp">${Math.round(t)}°</span>
-          <span class="hc-status">${st.label}</span>
+          <span class="hc-wind">${Math.round(w)} <small>kts</small></span>
+          <span class="hc-details">↑${Math.round(g)} · ${Math.round(t)}°</span>
+          <span class="hc-pill ${st.cls}">${st.label}</span>
         </div>`;
     }
 
@@ -499,8 +498,11 @@ function initSpotForecasts() {
 
     hourlyContainer.innerHTML = `
       <div class="hourly-header">
-        <span class="hourly-title">🕒 Previsión por horas: <strong>${dayName}</strong> (${dateFormatted})</span>
-        <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕</button>
+        <div class="hourly-title-wrapper">
+          <span>🕒</span>
+          <span>Previsión por horas: <strong>${dayName}</strong> (${dateFormatted})</span>
+        </div>
+        <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕ Cerrar</button>
       </div>
       <div class="hourly-strip">${hourlyCardsHTML}</div>`;
 
@@ -556,30 +558,29 @@ function initSpotForecasts() {
           const tL = day.temperature_2m_min[i];
           const st = forecastStatus(w);
           forecastHTML += `
-            <div class="forecast-card ${st.cls} clickable" data-day="${i}" data-date="${dateStr}" title="Haz clic para ver la previsión por horas">
+            <div class="forecast-card clickable" data-day="${i}" data-date="${dateStr}" title="Haz clic para ver la previsión por horas">
               <span class="fc-day">${formatDay(dateStr, i)}</span>
               <span class="fc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
               <span class="fc-wind">${Math.round(w)} kts</span>
               <span class="fc-gust">↑${Math.round(g)}</span>
-              <span class="fc-temp">${Math.round(tH)}°/${Math.round(tL)}°</span>
-              <span class="fc-status">${st.label}</span>
-              <span class="fc-hint">👆 Horas</span>
+              <span class="fc-temp">${Math.round(tH)}° / ${Math.round(tL)}°</span>
+              <span class="fc-status-badge ${st.cls}">${st.label}</span>
             </div>`;
         });
       }
 
       el.innerHTML = `
-        <div class="spot-weather-card-content" style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); max-width:100%; overflow:hidden;">
+        <div class="spot-weather-card-content" style="margin-top:14px; padding:14px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); max-width:100%; overflow:hidden;">
           <div class="spot-weather-stats-grid">
             <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
             <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
             <div class="weather-item"><span class="weather-label">⚡ Rachas</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_gusts_10m)} kts</span></div>
             <div class="weather-item"><span class="weather-label">🌡️ Temp.</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.temperature_2m)}°C</span></div>
           </div>
-          <div class="weather-status ${bCls}" style="margin-bottom:10px; font-size:0.82rem;">${icon} ${bText}</div>
-          <p style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-light); margin-bottom:6px;">Previsión 5 días <span style="font-weight:400; text-transform:none; opacity:0.85; color:var(--accent-teal);">(pulsa en un día para ver por horas)</span></p>
-          <div class="forecast-strip" style="display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto; max-width:100%;">${forecastHTML}</div>
-          <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;">Fuente: Open-Meteo · Datos en tiempo real</p>
+          <div class="weather-status ${bCls}" style="margin-bottom:12px; font-size:0.82rem;">${icon} ${bText}</div>
+          <p class="forecast-strip-title">Previsión 5 días <span class="forecast-click-hint">· Haz clic en un día para ver por horas 💡</span></p>
+          <div class="forecast-strip">${forecastHTML}</div>
+          <p style="font-size:0.72rem; color:var(--text-light); margin-top:10px;">Fuente: Open-Meteo · Datos en tiempo real</p>
         </div>`;
 
       // Attach card click handlers for hourly forecast
