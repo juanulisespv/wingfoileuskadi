@@ -420,6 +420,7 @@ function initSpotForecasts() {
   if (containers.length === 0) return;
 
   const loaded = {};   // Track which spots have already been fetched
+  const spotData = {}; // Store raw response per spot to render hourly details
 
   function degreesToCompass(deg) {
     const dirs = ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'];
@@ -449,6 +450,70 @@ function initSpotForecasts() {
     return new Date(dateStr + 'T12:00:00').toLocaleDateString('es-ES', { weekday:'short' }).replace('.','');
   }
 
+  function renderHourly(spotId, dayIdx, dateStr) {
+    const el = document.getElementById(`forecast-${spotId}`);
+    if (!el) return;
+
+    const cardContent = el.querySelector('.spot-weather-card-content');
+    if (!cardContent) return;
+
+    let hourlyContainer = cardContent.querySelector('.hourly-forecast-box');
+    if (!hourlyContainer) {
+      hourlyContainer = document.createElement('div');
+      hourlyContainer.className = 'hourly-forecast-box';
+      cardContent.appendChild(hourlyContainer);
+    }
+
+    const data = spotData[spotId];
+    if (!data || !data.hourly) return;
+
+    const hourly = data.hourly;
+    const startIdx = dayIdx * 24;
+
+    let hourlyCardsHTML = '';
+    // Show active hours from 07:00 to 22:00
+    for (let h = 7; h <= 22; h++) {
+      const idx = startIdx + h;
+      if (!hourly.time[idx]) continue;
+      const timeStr = hourly.time[idx];
+      const hourLabel = timeStr.split('T')[1] || `${h}:00`;
+      const w = hourly.wind_speed_10m[idx];
+      const g = hourly.wind_gusts_10m[idx];
+      const d = hourly.wind_direction_10m[idx];
+      const t = hourly.temperature_2m[idx];
+      const st = forecastStatus(w);
+
+      hourlyCardsHTML += `
+        <div class="hourly-card ${st.cls}">
+          <span class="hc-time">${hourLabel}</span>
+          <span class="hc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
+          <span class="hc-wind">${Math.round(w)} kts</span>
+          <span class="hc-gust">↑${Math.round(g)}</span>
+          <span class="hc-temp">${Math.round(t)}°</span>
+          <span class="hc-status">${st.label}</span>
+        </div>`;
+    }
+
+    const dayName = formatDay(dateStr, dayIdx);
+    const dateFormatted = new Date(dateStr + 'T12:00:00').toLocaleDateString('es-ES', { day:'numeric', month:'short' });
+
+    hourlyContainer.innerHTML = `
+      <div class="hourly-header">
+        <span class="hourly-title">🕒 Previsión por horas: <strong>${dayName}</strong> (${dateFormatted})</span>
+        <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="hourly-strip">${hourlyCardsHTML}</div>`;
+
+    // Attach close button listener
+    const closeBtn = hourlyContainer.querySelector('.hourly-close-btn');
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        hourlyContainer.remove();
+        el.querySelectorAll('.forecast-card').forEach(c => c.classList.remove('active-day'));
+      };
+    }
+  }
+
   async function loadSpotForecast(spotId) {
     if (loaded[spotId]) return;      // Already fetched
     const el  = document.getElementById(`forecast-${spotId}`);
@@ -467,11 +532,14 @@ function initSpotForecasts() {
     try {
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
         `&current=temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m` +
+        `&hourly=wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m` +
         `&daily=wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,temperature_2m_max,temperature_2m_min` +
         `&wind_speed_unit=kn&timezone=Europe%2FMadrid&forecast_days=5`;
       const res  = await fetch(url);
       if (!res.ok) throw new Error();
       const data = await res.json();
+      spotData[spotId] = data;
+
       const cur  = data.current;
       const day  = data.daily;
 
@@ -488,19 +556,20 @@ function initSpotForecasts() {
           const tL = day.temperature_2m_min[i];
           const st = forecastStatus(w);
           forecastHTML += `
-            <div class="forecast-card ${st.cls}" style="min-width:70px; flex:1;">
+            <div class="forecast-card ${st.cls} clickable" data-day="${i}" data-date="${dateStr}" title="Haz clic para ver la previsión por horas">
               <span class="fc-day">${formatDay(dateStr, i)}</span>
               <span class="fc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
               <span class="fc-wind">${Math.round(w)} kts</span>
               <span class="fc-gust">↑${Math.round(g)}</span>
               <span class="fc-temp">${Math.round(tH)}°/${Math.round(tL)}°</span>
               <span class="fc-status">${st.label}</span>
+              <span class="fc-hint">👆 Horas</span>
             </div>`;
         });
       }
 
       el.innerHTML = `
-        <div style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); max-width:100%; overflow:hidden;">
+        <div class="spot-weather-card-content" style="margin-top:14px; padding:12px; border-radius:var(--radius-md); background:var(--bg-primary); border:1px solid var(--border-color); max-width:100%; overflow:hidden;">
           <div class="spot-weather-stats-grid">
             <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
             <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
@@ -508,13 +577,33 @@ function initSpotForecasts() {
             <div class="weather-item"><span class="weather-label">🌡️ Temp.</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.temperature_2m)}°C</span></div>
           </div>
           <div class="weather-status ${bCls}" style="margin-bottom:10px; font-size:0.82rem;">${icon} ${bText}</div>
-          <p style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-light); margin-bottom:6px;">Previsión 5 días</p>
+          <p style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--text-light); margin-bottom:6px;">Previsión 5 días <span style="font-weight:400; text-transform:none; opacity:0.85; color:var(--accent-teal);">(pulsa en un día para ver por horas)</span></p>
           <div class="forecast-strip" style="display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto; max-width:100%;">${forecastHTML}</div>
           <p style="font-size:0.72rem; color:var(--text-light); margin-top:8px;">Fuente: Open-Meteo · Datos en tiempo real</p>
         </div>`;
 
+      // Attach card click handlers for hourly forecast
+      const cardEls = el.querySelectorAll('.forecast-card.clickable');
+      cardEls.forEach((card) => {
+        card.addEventListener('click', () => {
+          const dayIdx = parseInt(card.dataset.day, 10);
+          const dateStr = card.dataset.date;
+          
+          if (card.classList.contains('active-day')) {
+            card.classList.remove('active-day');
+            const hBox = el.querySelector('.hourly-forecast-box');
+            if (hBox) hBox.remove();
+          } else {
+            cardEls.forEach(c => c.classList.remove('active-day'));
+            card.classList.add('active-day');
+            renderHourly(spotId, dayIdx, dateStr);
+          }
+        });
+      });
+
       loaded[spotId] = true;
-    } catch {
+    } catch (err) {
+      console.error(err);
       el.innerHTML = `<p style="margin-top:10px; font-size:0.82rem; color:var(--text-light);">⚠️ No se pudo cargar la previsión.</p>`;
     }
   }
