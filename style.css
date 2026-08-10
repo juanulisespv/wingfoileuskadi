@@ -1763,13 +1763,31 @@ p {
   .forecast-strip {
     display: flex;
     overflow-x: auto;
-    gap: 8px;
-    padding-bottom: 6px;
+    gap: 6px;
+    padding-top: 4px;
+    padding-bottom: 8px;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
   .forecast-card {
-    min-width: 78px;
-    flex-shrink: 0;
+    width: auto !important;
+    min-width: 76px;
+    max-width: 88px;
+    flex: 0 0 auto;
+    padding: 10px 4px;
+  }
+  .fc-day {
+    font-size: 0.74rem;
+  }
+  .fc-wind {
+    font-size: 0.84rem;
+  }
+  .fc-gust,
+  .fc-temp {
+    font-size: 0.62rem;
+  }
+  .fc-status {
+    font-size: 0.58rem;
   }
 }
 
