@@ -484,12 +484,13 @@ function initSpotForecasts() {
       const st = forecastStatus(w);
 
       hourlyCardsHTML += `
-        <div class="hourly-card">
+        <div class="hourly-card ${st.cls}">
           <span class="hc-time">${hourLabel}</span>
           <span class="hc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
-          <span class="hc-wind">${Math.round(w)} <small>kts</small></span>
-          <span class="hc-details">↑${Math.round(g)} · ${Math.round(t)}°</span>
-          <span class="hc-pill ${st.cls}">${st.label}</span>
+          <span class="hc-wind">${Math.round(w)} kts</span>
+          <span class="hc-gust">↑${Math.round(g)}</span>
+          <span class="hc-temp">${Math.round(t)}°</span>
+          <span class="hc-status">${st.label}</span>
         </div>`;
     }
 
@@ -558,13 +559,13 @@ function initSpotForecasts() {
           const tL = day.temperature_2m_min[i];
           const st = forecastStatus(w);
           forecastHTML += `
-            <div class="forecast-card clickable" data-day="${i}" data-date="${dateStr}" title="Haz clic para ver la previsión por horas">
+            <div class="forecast-card ${st.cls} clickable" data-day="${i}" data-date="${dateStr}" title="Haz clic para ver la previsión por horas">
               <span class="fc-day">${formatDay(dateStr, i)}</span>
               <span class="fc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
               <span class="fc-wind">${Math.round(w)} kts</span>
               <span class="fc-gust">↑${Math.round(g)}</span>
               <span class="fc-temp">${Math.round(tH)}° / ${Math.round(tL)}°</span>
-              <span class="fc-status-badge ${st.cls}">${st.label}</span>
+              <span class="fc-status">${st.label}</span>
             </div>`;
         });
       }

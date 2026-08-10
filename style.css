@@ -731,6 +731,31 @@ p {
   box-shadow: 0 0 0 2px var(--accent-teal);
 }
 
+/* Forecast Card Condition Colors */
+.forecast-card.f-good,
+.hourly-card.f-good {
+  border-color: #86efac;
+  background-color: #f0fdf4;
+}
+
+.forecast-card.f-ok,
+.hourly-card.f-ok {
+  border-color: #fcd34d;
+  background-color: #fef9e7;
+}
+
+.forecast-card.f-bad,
+.hourly-card.f-bad {
+  border-color: #fca5a5;
+  background-color: #fef2f2;
+}
+
+.forecast-card.f-strong,
+.hourly-card.f-strong {
+  border-color: #fb923c;
+  background-color: #fff7ed;
+}
+
 .fc-day {
   font-size: 0.78rem;
   font-weight: 700;
@@ -740,13 +765,15 @@ p {
   margin-top: 2px;
 }
 
-.fc-arrow {
+.fc-arrow,
+.hc-arrow {
   font-size: 1.25rem;
   line-height: 1;
   color: var(--text-primary);
 }
 
-.fc-wind {
+.fc-wind,
+.hc-wind {
   font-size: 0.92rem;
   font-weight: 800;
   color: var(--text-primary);
@@ -762,26 +789,40 @@ p {
   color: var(--text-secondary);
 }
 
-.fc-status-badge {
-  font-size: 0.62rem;
+.fc-status,
+.hc-status {
+  font-size: 0.64rem;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 10px;
-  line-height: 1.2;
   margin-top: 2px;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
-.fc-status-badge.f-good { background: rgba(34, 197, 94, 0.12); color: #15803d; }
-.fc-status-badge.f-ok { background: rgba(245, 158, 11, 0.12); color: #b45309; }
-.fc-status-badge.f-bad { background: rgba(239, 68, 68, 0.1); color: #b91c1c; }
-.fc-status-badge.f-strong { background: rgba(249, 115, 22, 0.12); color: #c2410c; }
+.f-good .fc-status,
+.f-good .hc-status {
+  color: #15803d;
+}
 
-/* Hourly Breakdown Box - Clean Glassmorphic Card */
+.f-ok .fc-status,
+.f-ok .hc-status {
+  color: #b45309;
+}
+
+.f-bad .fc-status,
+.f-bad .hc-status {
+  color: #dc2626;
+}
+
+.f-strong .fc-status,
+.f-strong .hc-status {
+  color: #ea580c;
+}
+
+/* Hourly Breakdown Box */
 .hourly-forecast-box {
   margin-top: 16px;
   padding: 16px;
-  background: var(--bg-secondary);
+  background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
@@ -849,10 +890,8 @@ p {
   gap: 4px;
   padding: 10px 8px;
   border-radius: var(--radius-sm);
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
   text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
 }
 
 .hc-time {
@@ -861,41 +900,10 @@ p {
   color: var(--text-primary);
 }
 
-.hc-arrow {
-  font-size: 1.15rem;
-  line-height: 1;
-  color: var(--text-secondary);
-}
-
-.hc-wind {
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: var(--text-primary);
-}
-
-.hc-wind small {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--text-light);
-}
-
 .hc-details {
   font-size: 0.66rem;
   color: var(--text-light);
 }
-
-.hc-pill {
-  font-size: 0.6rem;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 8px;
-  margin-top: 2px;
-}
-
-.hc-pill.f-good { background: rgba(34, 197, 94, 0.12); color: #15803d; }
-.hc-pill.f-ok { background: rgba(245, 158, 11, 0.12); color: #b45309; }
-.hc-pill.f-bad { background: rgba(239, 68, 68, 0.1); color: #b91c1c; }
-.hc-pill.f-strong { background: rgba(249, 115, 22, 0.12); color: #c2410c; }
 
 /* Updated timestamp */
 .weather-updated {
