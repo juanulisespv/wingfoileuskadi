@@ -501,9 +501,25 @@ function initSpotForecasts() {
         <div class="hourly-title-wrapper">
           <span>Previsión por horas: <strong>${dayName}</strong> (${dateFormatted})</span>
         </div>
-        <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕ Cerrar</button>
+        <div class="hourly-actions">
+          <button class="hourly-nav-btn hourly-prev-btn" title="Ver horas anteriores" aria-label="Anterior">‹</button>
+          <button class="hourly-nav-btn hourly-next-btn" title="Ver horas siguientes" aria-label="Siguiente">›</button>
+          <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕ Cerrar</button>
+        </div>
       </div>
       <div class="hourly-strip">${hourlyCardsHTML}</div>`;
+
+    // Attach navigation scroll handlers
+    const stripEl = hourlyContainer.querySelector('.hourly-strip');
+    const prevBtn = hourlyContainer.querySelector('.hourly-prev-btn');
+    const nextBtn = hourlyContainer.querySelector('.hourly-next-btn');
+
+    if (prevBtn && stripEl) {
+      prevBtn.onclick = () => stripEl.scrollBy({ left: -240, behavior: 'smooth' });
+    }
+    if (nextBtn && stripEl) {
+      nextBtn.onclick = () => stripEl.scrollBy({ left: 240, behavior: 'smooth' });
+    }
 
     // Attach close button listener
     const closeBtn = hourlyContainer.querySelector('.hourly-close-btn');

@@ -852,6 +852,36 @@ p {
   font-weight: 700;
 }
 
+.hourly-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hourly-nav-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-primary);
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.hourly-nav-btn:hover {
+  background: var(--accent-teal);
+  color: #ffffff;
+  border-color: var(--accent-teal);
+}
+
 .hourly-close-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -875,8 +905,27 @@ p {
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   scrollbar-width: thin;
+  scrollbar-color: var(--accent-teal) rgba(0, 0, 0, 0.06);
+}
+
+.hourly-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.hourly-strip::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.hourly-strip::-webkit-scrollbar-thumb {
+  background: var(--accent-teal);
+  border-radius: 4px;
+}
+
+.hourly-strip::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-teal-hover);
 }
 
 /* Individual Hourly Card */
