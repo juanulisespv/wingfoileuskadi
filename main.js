@@ -569,8 +569,14 @@ function initSpotForecasts() {
         });
       }
 
+      const timeFormatted = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+
       el.innerHTML = `
         <div class="spot-weather-card-content">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px dashed var(--border-color);">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-primary);">Medición de las ${timeFormatted}h · Datos en vivo</span>
+            <span style="font-size:0.72rem; color:var(--text-light);">Fuente: Open-Meteo</span>
+          </div>
           <div class="spot-weather-stats-grid">
             <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
             <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
@@ -580,9 +586,8 @@ function initSpotForecasts() {
           <div class="weather-status ${bCls}" style="margin-bottom:12px; font-size:0.82rem;">${icon} ${bText}</div>
           <p class="forecast-strip-title">Previsión 5 días</p>
           <div class="forecast-strip">${forecastHTML}</div>
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-top:10px; font-size:0.72rem; color:var(--text-light);">
-            <span>Fuente: Open-Meteo · Datos en tiempo real</span>
-            <span style="color:var(--accent-teal); font-weight:600;">Pulsa en la ficha de cada día para ver la previsión por horas</span>
+          <div style="margin-top:10px; text-align:right; font-size:0.72rem; color:var(--accent-teal); font-weight:600;">
+            Pulsa en la ficha de cada día para ver la previsión por horas
           </div>
         </div>`;
 
