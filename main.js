@@ -502,8 +502,12 @@ function initSpotForecasts() {
           <span>Previsión por horas: <strong>${dayName}</strong> (${dateFormatted})</span>
         </div>
         <div class="hourly-actions">
-          <button class="hourly-nav-btn hourly-prev-btn" title="Ver horas anteriores" aria-label="Anterior">‹</button>
-          <button class="hourly-nav-btn hourly-next-btn" title="Ver horas siguientes" aria-label="Siguiente">›</button>
+          <button class="hourly-nav-btn hourly-prev-btn" title="Ver horas anteriores" aria-label="Anterior">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="hourly-nav-btn hourly-next-btn" title="Ver horas siguientes" aria-label="Siguiente">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
           <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕ Cerrar</button>
         </div>
       </div>

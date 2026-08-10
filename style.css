@@ -853,7 +853,7 @@ p {
 }
 
 .hourly-actions {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
 }
@@ -861,19 +861,17 @@ p {
 .hourly-nav-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1;
   color: var(--text-primary);
   cursor: pointer;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  border-radius: var(--radius-sm);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.15s ease;
   padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .hourly-nav-btn:hover {
@@ -885,14 +883,18 @@ p {
 .hourly-close-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.82rem;
   font-weight: 600;
-  line-height: 1;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: var(--radius-sm);
   transition: all 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .hourly-close-btn:hover {
