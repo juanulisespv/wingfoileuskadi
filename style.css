@@ -881,27 +881,40 @@ p {
 
 /* Individual Hourly Card */
 .hourly-card {
-  min-width: 72px;
+  min-width: 68px;
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 10px 8px;
+  gap: 3px;
+  padding: 8px 6px;
   border-radius: var(--radius-sm);
   text-align: center;
   border: 1px solid var(--border-color);
 }
 
 .hc-time {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.hc-details {
-  font-size: 0.66rem;
-  color: var(--text-light);
+.hourly-card .hc-arrow {
+  font-size: 1.05rem;
+}
+
+.hourly-card .hc-wind {
+  font-size: 0.82rem;
+}
+
+.hourly-card .hc-gust {
+  font-size: 0.62rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.hourly-card .hc-temp {
+  font-size: 0.64rem;
 }
 
 /* Updated timestamp */

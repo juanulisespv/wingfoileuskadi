@@ -488,7 +488,7 @@ function initSpotForecasts() {
           <span class="hc-time">${hourLabel}</span>
           <span class="hc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
           <span class="hc-wind">${Math.round(w)} kts</span>
-          <span class="hc-gust">Rachas ${Math.round(g)}</span>
+          <span class="hc-gust">Rachas ${Math.round(g)} kts</span>
           <span class="hc-temp">${Math.round(t)}°</span>
         </div>`;
     }
@@ -561,7 +561,7 @@ function initSpotForecasts() {
               <span class="fc-day">${formatDay(dateStr, i)}</span>
               <span class="fc-arrow" title="${degreesToCompass(d)}">${degreesToArrow(d)}</span>
               <span class="fc-wind">${Math.round(w)} kts</span>
-              <span class="fc-gust">Rachas ${Math.round(g)}</span>
+              <span class="fc-gust">Rachas ${Math.round(g)} kts</span>
               <span class="fc-temp">${Math.round(tH)}° / ${Math.round(tL)}°</span>
               <span class="fc-status">${st.label}</span>
             </div>`;
