@@ -500,7 +500,6 @@ function initSpotForecasts() {
     hourlyContainer.innerHTML = `
       <div class="hourly-header">
         <div class="hourly-title-wrapper">
-          <span>🕒</span>
           <span>Previsión por horas: <strong>${dayName}</strong> (${dateFormatted})</span>
         </div>
         <button class="hourly-close-btn" title="Cerrar detalle por horas" aria-label="Cerrar">✕ Cerrar</button>
@@ -583,7 +582,7 @@ function initSpotForecasts() {
           <div class="forecast-strip">${forecastHTML}</div>
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-top:10px; font-size:0.72rem; color:var(--text-light);">
             <span>Fuente: Open-Meteo · Datos en tiempo real</span>
-            <span style="color:var(--accent-teal); font-weight:600;">💡 Pulsa en la ficha de cada día para ver la previsión por horas</span>
+            <span style="color:var(--accent-teal); font-weight:600;">Pulsa en la ficha de cada día para ver la previsión por horas</span>
           </div>
         </div>`;
 

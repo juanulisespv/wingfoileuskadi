@@ -726,34 +726,33 @@ p {
 }
 
 .forecast-card.active-day {
-  border-color: var(--accent-teal) !important;
-  background-color: rgba(15, 118, 110, 0.05) !important;
-  box-shadow: 0 0 0 2px var(--accent-teal);
+  border-color: #0d9488 !important;
+  box-shadow: 0 0 0 3px #0d9488, 0 4px 14px rgba(13, 148, 136, 0.25);
 }
 
-/* Forecast Card Condition Colors */
+/* Vibrant Full Card Condition Colors */
 .forecast-card.f-good,
 .hourly-card.f-good {
-  border-color: #86efac;
-  background-color: #f0fdf4;
+  border-color: #4ade80 !important;
+  background-color: #dcfce7 !important;
 }
 
 .forecast-card.f-ok,
 .hourly-card.f-ok {
-  border-color: #fcd34d;
-  background-color: #fef9e7;
+  border-color: #facc15 !important;
+  background-color: #fef3c7 !important;
 }
 
 .forecast-card.f-bad,
 .hourly-card.f-bad {
-  border-color: #fca5a5;
-  background-color: #fef2f2;
+  border-color: #f87171 !important;
+  background-color: #fee2e2 !important;
 }
 
 .forecast-card.f-strong,
 .hourly-card.f-strong {
-  border-color: #fb923c;
-  background-color: #fff7ed;
+  border-color: #fb923c !important;
+  background-color: #ffedd5 !important;
 }
 
 .fc-day {
