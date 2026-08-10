@@ -438,11 +438,11 @@ function initSpotForecasts() {
     return               { cls:'f-bad',  label:'Extremo'   };
   }
   function conditionBanner(w, g) {
-    if (w < 8)         return { cls:'status-caution', icon:'🟡', text:`Viento flojo (${Math.round(w)} kts). No apto para wingfoil.` };
-    if (w <= 12)       return { cls:'status-caution', icon:'🟡', text:`Brisa ligera (${Math.round(w)} kts). Iniciación con alas grandes.` };
-    if (w <= 25 && g <= 32) return { cls:'status-optimal', icon:'🟢', text:`¡Condiciones óptimas! (${Math.round(w)} kts). Aptos todos los niveles.` };
-    if (w <= 32)       return { cls:'status-caution', icon:'🟠', text:`Viento fuerte (${Math.round(w)} kts). Solo riders avanzados.` };
-    return                    { cls:'status-danger',  icon:'🔴', text:`Viento extremo (${Math.round(w)} kts). NO recomendado.` };
+    if (w < 8)         return { cls:'status-caution', text:`Viento flojo (${Math.round(w)} kts). No apto para wingfoil.` };
+    if (w <= 12)       return { cls:'status-caution', text:`Brisa ligera (${Math.round(w)} kts). Iniciación con alas grandes.` };
+    if (w <= 25 && g <= 32) return { cls:'status-optimal', text:`¡Condiciones óptimas! (${Math.round(w)} kts). Aptos todos los niveles.` };
+    if (w <= 32)       return { cls:'status-caution', text:`Viento fuerte (${Math.round(w)} kts). Solo riders avanzados.` };
+    return                    { cls:'status-danger',  text:`Viento extremo (${Math.round(w)} kts). NO recomendado.` };
   }
   function formatDay(dateStr, i) {
     if (i === 0) return 'Hoy';
@@ -545,7 +545,7 @@ function initSpotForecasts() {
       const cur  = data.current;
       const day  = data.daily;
 
-      const { cls: bCls, icon, text: bText } = conditionBanner(cur.wind_speed_10m, cur.wind_gusts_10m);
+      const { cls: bCls, text: bText } = conditionBanner(cur.wind_speed_10m, cur.wind_gusts_10m);
 
       // Build forecast cards HTML
       let forecastHTML = '';
@@ -578,12 +578,12 @@ function initSpotForecasts() {
             <span style="font-size:0.72rem; color:var(--text-light);">Fuente: Open-Meteo</span>
           </div>
           <div class="spot-weather-stats-grid">
-            <div class="weather-item"><span class="weather-label">💨 Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
-            <div class="weather-item"><span class="weather-label">🧭 Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
-            <div class="weather-item"><span class="weather-label">⚡ Rachas</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_gusts_10m)} kts</span></div>
-            <div class="weather-item"><span class="weather-label">🌡️ Temp.</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.temperature_2m)}°C</span></div>
+            <div class="weather-item"><span class="weather-label">Viento</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_speed_10m)} kts</span></div>
+            <div class="weather-item"><span class="weather-label">Dirección</span><span class="weather-value" style="font-size:0.95rem;">${degreesToCompass(cur.wind_direction_10m)}</span></div>
+            <div class="weather-item"><span class="weather-label">Rachas</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.wind_gusts_10m)} kts</span></div>
+            <div class="weather-item"><span class="weather-label">Temp.</span><span class="weather-value" style="font-size:0.95rem;">${Math.round(cur.temperature_2m)}°C</span></div>
           </div>
-          <div class="weather-status ${bCls}" style="margin-bottom:12px; font-size:0.82rem;">${icon} ${bText}</div>
+          <div class="weather-status ${bCls}" style="margin-bottom:12px; font-size:0.82rem;">${bText}</div>
           <p class="forecast-strip-title">Previsión 5 días</p>
           <div class="forecast-strip">${forecastHTML}</div>
           <div style="margin-top:10px; text-align:right; font-size:0.72rem; color:var(--accent-teal); font-weight:600;">
